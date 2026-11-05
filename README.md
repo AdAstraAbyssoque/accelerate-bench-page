@@ -20,3 +20,7 @@ DeepSeek-V4.1-Flash (0910) identifies the historical `deepseek-v4.1-flash-expire
 The task illustrations and control layout build on the authors' earlier SciAccel website. The paper/results/findings structure also references ExplorationBench (https://explorationbench.com/). The Tencent Hy wordmark comes from the Hy-MT2 paper source (https://arxiv.org/abs/2605.22064) and remains its owner's mark. Font licenses are supplied in `dist/assets/fonts/`.
 
 The PDF is an arXiv preparation draft. The arXiv record and benchmark package links will be added after release. No acceptance status or arXiv identifier is implied.
+
+## License
+
+Original website code is Apache-2.0; see LICENSE and LICENSING.md. Third-party assets retain their own notices. The manuscript and LaTeX template are separate.
