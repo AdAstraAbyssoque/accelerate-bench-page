@@ -1,0 +1,98 @@
+[
+  {
+    "id": "neighbor-lists",
+    "title": "Neighbor lists",
+    "tag": "Molecular simulation",
+    "description": "Reuse local interactions across simulation steps.",
+    "diagram": "assets/methods/neighbor-lists.svg",
+    "color": "#9675c5"
+  },
+  {
+    "id": "multigrid",
+    "title": "Multigrid",
+    "tag": "Numerical solvers",
+    "description": "Resolve errors across fine and coarse grids.",
+    "diagram": "assets/methods/multigrid.svg",
+    "color": "#2c79aa"
+  },
+  {
+    "id": "domain-decomposition",
+    "title": "Domain decomposition",
+    "tag": "Parallel computing",
+    "description": "Split a physical domain across cooperating workers.",
+    "diagram": "assets/methods/domain-decomposition.svg",
+    "color": "#147f65"
+  },
+  {
+    "id": "sparse-algebra",
+    "title": "Sparse linear algebra",
+    "tag": "Numerical solvers",
+    "description": "Compute on the nonzero structure of a system.",
+    "diagram": "assets/methods/sparse-algebra.svg",
+    "color": "#6956b7"
+  },
+  {
+    "id": "fourier-transforms",
+    "title": "Fourier transforms",
+    "tag": "Signals & imaging",
+    "description": "Move between spatial and frequency representations.",
+    "diagram": "assets/methods/fourier-transforms.svg",
+    "color": "#337ac4"
+  },
+  {
+    "id": "tensor-contraction",
+    "title": "Tensor contraction",
+    "tag": "Quantum & compression",
+    "description": "Choose the contraction order to reduce work.",
+    "diagram": "assets/methods/tensor-contraction.svg",
+    "color": "#a75780"
+  },
+  {
+    "id": "mesh-locality",
+    "title": "Mesh locality",
+    "tag": "Simulation",
+    "description": "Organize neighboring cells for efficient access.",
+    "diagram": "assets/methods/mesh-locality.svg",
+    "color": "#ad7b1d"
+  },
+  {
+    "id": "graph-partitioning",
+    "title": "Graph partitioning",
+    "tag": "Graphs & assembly",
+    "description": "Keep connected work close to the data it needs.",
+    "diagram": "assets/methods/graph-partitioning.svg",
+    "color": "#398c8a"
+  },
+  {
+    "id": "kv-cache",
+    "title": "KV caching",
+    "tag": "Language generation",
+    "description": "Reuse attention state during token generation.",
+    "diagram": "assets/methods/kv-cache.svg",
+    "color": "#5866c3"
+  },
+  {
+    "id": "checkpointing",
+    "title": "Checkpointing",
+    "tag": "Scientific workflows",
+    "description": "Save complete state and resume the computation.",
+    "diagram": "assets/methods/checkpointing.svg",
+    "color": "#a56480"
+  },
+  {
+    "id": "block-solvers",
+    "title": "Block solvers",
+    "tag": "Linear algebra",
+    "description": "Exploit coupled structure in matrix operations.",
+    "diagram": "assets/methods/block-solvers.svg",
+    "color": "#568941"
+  },
+  {
+    "id": "io-layout",
+    "title": "Parallel I/O",
+    "tag": "Scientific data",
+    "description": "Coordinate data movement across processes.",
+    "diagram": "assets/methods/io-layout.svg",
+    "color": "#697f9b"
+  }
+]

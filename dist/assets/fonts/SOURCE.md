@@ -1,0 +1,1 @@
+Manrope and IBM Plex Mono are self-hosted from Google Fonts. Sources: https://fonts.google.com/specimen/Manrope and https://fonts.google.com/specimen/IBM+Plex+Mono . SIL Open Font License texts are included beside the font files.
