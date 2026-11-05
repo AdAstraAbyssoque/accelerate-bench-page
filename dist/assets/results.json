@@ -1,7 +1,7 @@
 {
   "title": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
   "snapshot": "ICLR final manuscript, 26 September 2026",
-  "metric_note": "Table 1: 384 runs, 12 agents, 32 tasks. Each agent is a model paired with a harness. Scores and target rates are percentages. Task-level values retain the published rounding; null means failed correctness, not missing data. Do not recompute Table 1 from rounded per-task values.",
+  "metric_note": "Table 1 reports 384 selected agent-task outcomes: 12 agents and 32 tasks. Eight configurations use the median-reward attempt among the latest three eligible scored attempts; GPT-6 Astra, Gemini-3.8-Flash, Kimi K3 (max), and GLM-5.3 (max) use their sole attempt. All metrics for an agent-task pair use the same selected record. Scores and target rates are percentages. Per-task values retain published rounding; null indicates failed correctness, not missing data. Do not recompute Table 1 from rounded per-task values.",
   "models": [
     {
       "name": "GPT-6 Astra",
@@ -1056,5 +1056,27 @@
     "tasks": "Paper Appendix B, resource allocation table",
     "per_task": "Paper Appendix F, per-task reward table",
     "analysis": "Separate 480-run analysis cohort; paper Sections 5 and Appendices G–L"
+  },
+  "selection": {
+    "snapshot_id": "median-main-table-20260921-12configs",
+    "aggregation": "median_reward_attempt",
+    "ties": "Sort by reward, original completion time, and trial ID; select the middle record for triplets.",
+    "three_attempt_models": [
+      "DeepSeek-V4-Flash",
+      "DeepSeek-V4-Pro",
+      "DeepSeek-V4.1-Flash (0910)",
+      "GLM-5.2",
+      "Grok 4.6",
+      "Hy3",
+      "Hy4-Preview",
+      "GLM-5.3-Flash"
+    ],
+    "single_attempt_models": [
+      "GPT-6 Astra",
+      "Gemini-3.8-Flash",
+      "Kimi K3",
+      "GLM-5.3"
+    ],
+    "manifest_sha256": "6d1be766c4becc8ea6aba81accee32d3467eb39609e8a53d457945eeae3f5576"
   }
 }

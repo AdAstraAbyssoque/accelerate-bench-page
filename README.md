@@ -13,7 +13,7 @@ Run `python3 scripts/verify.py` before committing. GitHub Actions deploys `dist/
 
 ## Content and provenance
 
-`dist/assets/results.json` preserves the rounded numbers reported in the September 26, 2026 manuscript: 12 agents, 32 tasks, 384 main runs. The 480-run analysis cohort is separate. Null per-task rewards indicate failed correctness. Do not recompute main-table aggregates from the rounded per-task table.
+`dist/assets/results.json` preserves the rounded numbers reported in the September 26, 2026 manuscript: 12 agents, 32 tasks, 384 selected main-table outcomes. Eight configurations select the median-reward run from the latest three eligible scored attempts; GPT-6 Astra, Gemini-3.8-Flash, Kimi K3 (max), and GLM-5.3 (max) use their sole attempt. Performance and usage for each pair come from the same record. The 480-run analysis cohort is separate. Null per-task rewards indicate failed correctness. Do not recompute main-table aggregates from the rounded per-task table.
 
 DeepSeek-V4.1-Flash (0910) identifies the historical `deepseek-v4.1-flash-expires-on-0910` deployment. Subsequent model versions require new evidence and separate rows; this page does not claim new evaluations have completed.
 
