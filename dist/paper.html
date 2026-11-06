@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accelerate Bench: Evaluating Agents for Application-Level Program Optimization</title>
+<meta name="description" content="Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.">
+<link rel="canonical" href="https://acceleratebench.com/paper.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Accelerate Bench">
+<meta property="og:title" content="Accelerate Bench: Evaluating Agents for Application-Level Program Optimization">
+<meta property="og:description" content="Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.">
+<meta property="og:url" content="https://acceleratebench.com/paper.html">
+<meta property="og:image" content="https://acceleratebench.com/assets/fig01_overview.png">
+<meta property="og:image:width" content="2000">
+<meta property="og:image:height" content="1104">
+<meta property="og:image:alt" content="Application-level performance engineering in Accelerate Bench">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Accelerate Bench: Evaluating Agents for Application-Level Program Optimization">
+<meta name="twitter:description" content="Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.">
+<meta name="twitter:image" content="https://acceleratebench.com/assets/fig01_overview.png">
+<meta name="twitter:image:alt" content="Application-level performance engineering in Accelerate Bench">
+<meta name="theme-color" content="#f8fafb">
+<link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "@id": "https://acceleratebench.com/paper.html#article",
+  "url": "https://acceleratebench.com/paper.html",
+  "headline": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
+  "name": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
+  "description": "Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Bowen Liu"
+    },
+    {
+      "@type": "Person",
+      "name": "Yuhan Li"
+    },
+    {
+      "@type": "Person",
+      "name": "Nuo Chen"
+    },
+    {
+      "@type": "Person",
+      "name": "Weile Luo"
+    },
+    {
+      "@type": "Person",
+      "name": "Miao Peng"
+    },
+    {
+      "@type": "Person",
+      "name": "Qintong Zhang"
+    },
+    {
+      "@type": "Person",
+      "name": "Qifan Zhang"
+    },
+    {
+      "@type": "Person",
+      "name": "Jia Li"
+    },
+    {
+      "@type": "Person",
+      "name": "Ziqi Gao"
+    },
+    {
+      "@type": "Person",
+      "name": "Lydell Huang"
+    }
+  ],
+  "inLanguage": "en",
+  "creativeWorkStatus": "Draft",
+  "image": "https://acceleratebench.com/assets/fig01_overview.png",
+  "encoding": {
+    "@type": "MediaObject",
+    "contentUrl": "https://acceleratebench.com/assets/accelerate-bench.pdf",
+    "encodingFormat": "application/pdf"
+  },
+  "abstract": "Application optimization requires coding agents to discover useful changes and coordinate them across a complete program while preserving the required computation. We introduce Accelerate Bench, a benchmark of 32 CPU optimization tasks adapted from scientific applications and supercomputing competitions. Each task provides a working program and specifies the workload, correctness requirements, timing boundaries, and permitted edits, leaving agents to choose where and how to optimize. Public testing supports iterative development, and a separate verifier scores the final submission. We evaluate 12 coding agents, each pairing a model with a harness. Of their 325 correct outcomes, 161 (49.5%) stay below 1.25x speedup. Controlled replays show why coordination across an application matters: identical source code runs between 0.29x and 2.12x depending only on build and runtime settings, and one code change is worth 1.01x or 6.4x depending on another. Accelerate Bench pairs executable workloads with agents' programs and trajectories to evaluate both their gains and the process behind them.",
+  "mainEntityOfPage": "https://acceleratebench.com/paper.html"
+}
+</script>
+
+<meta name="citation_title" content="Accelerate Bench: Evaluating Agents for Application-Level Program Optimization">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_pdf_url" content="https://acceleratebench.com/assets/accelerate-bench.pdf">
+<meta name="citation_author" content="Bowen Liu">
+<meta name="citation_author" content="Yuhan Li">
+<meta name="citation_author" content="Nuo Chen">
+<meta name="citation_author" content="Weile Luo">
+<meta name="citation_author" content="Miao Peng">
+<meta name="citation_author" content="Qintong Zhang">
+<meta name="citation_author" content="Qifan Zhang">
+<meta name="citation_author" content="Jia Li">
+<meta name="citation_author" content="Ziqi Gao">
+<meta name="citation_author" content="Lydell Huang">
+<style>.paper-page{max-width:900px;margin:auto;padding:56px 28px 80px}.paper-page h1{font-size:clamp(28px,4.2vw,44px);line-height:1.18;letter-spacing:-.035em;margin:24px 0}.paper-page .author-list{margin:26px 0 12px}.paper-page .affiliations{margin:16px 0 28px}.paper-abstract{margin-top:46px}.paper-abstract h2{font-size:23px;margin-bottom:18px}.paper-abstract p{font-size:17px;line-height:1.8}.paper-page .caption{margin-top:22px}</style>
+</head><body><a class="skip" href="#paper-main">Skip to paper</a><main id="paper-main" class="paper-page"><a class="text-link" href="./">← Accelerate Bench project</a><article><p class="eyebrow">Paper</p><h1>Accelerate Bench: Evaluating Agents for Application-Level Program Optimization</h1><div class="author-list"><span>Bowen Liu<sup>1</sup></span><span>Yuhan Li<sup>1‡</sup></span><span>Nuo Chen<sup>1†</sup></span><span>Weile Luo<sup>1</sup></span><span>Miao Peng<sup>1,3</sup></span><span>Qintong Zhang<sup>1,5</sup></span><span>Qifan Zhang<sup>1,3</sup></span><span>Jia Li<sup>2</sup></span><span>Ziqi Gao<sup>4</sup></span><span>Lydell Huang<sup>1</sup></span></div><p class="roles">‡ Project Lead &nbsp; † Corresponding author: <a href="mailto:chennuo26@gmail.com">chennuo26@gmail.com</a></p><ol class="affiliations"><li>Tencent Hy Team</li><li>The Hong Kong University of Science and Technology</li><li>The Hong Kong University of Science and Technology (Guangzhou)</li><li>Tsinghua University</li><li>Peking University</li></ol><div class="actions"><a class="button primary" href="assets/accelerate-bench.pdf">Read the paper (PDF) ↗</a><a class="button" href="./#paper">BibTeX citation</a></div><p class="caption">Manuscript draft · 2026. The arXiv record is forthcoming.</p><section class="paper-abstract" aria-labelledby="abstract-heading"><h2 id="abstract-heading">Abstract</h2><p>Application optimization requires coding agents to discover useful changes and coordinate them across a complete program while preserving the required computation. We introduce Accelerate Bench, a benchmark of 32 CPU optimization tasks adapted from scientific applications and supercomputing competitions. Each task provides a working program and specifies the workload, correctness requirements, timing boundaries, and permitted edits, leaving agents to choose where and how to optimize. Public testing supports iterative development, and a separate verifier scores the final submission. We evaluate 12 coding agents, each pairing a model with a harness. Of their 325 correct outcomes, 161 (49.5%) stay below 1.25x speedup. Controlled replays show why coordination across an application matters: identical source code runs between 0.29x and 2.12x depending only on build and runtime settings, and one code change is worth 1.01x or 6.4x depending on another. Accelerate Bench pairs executable workloads with agents&#x27; programs and trajectories to evaluate both their gains and the process behind them.</p></section></article></main></body></html>

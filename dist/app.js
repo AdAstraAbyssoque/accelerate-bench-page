@@ -66,8 +66,6 @@ async function load() {
   $('#task-grid').addEventListener('click',e=>{const b=e.target.closest('[data-task]');if(b)openTask(b.dataset.task);if(e.target.closest('#reset-tasks')){$('#task-search').value='';$('#task-area').value='';renderTasks();$('#task-search').focus();}});
   $('#metric').addEventListener('change',e=>{metric=e.target.value;renderResults();});
   document.querySelectorAll('[data-sort]').forEach(b=>b.addEventListener('click',()=>{metric=b.dataset.sort;renderResults();}));
-  $('#author-list').innerHTML=data.authors.map(a=>`<span>${esc(a.name)}<sup>${a.affiliations.join(',')}${a.role==='Project Lead'?'‡':a.role==='Corresponding author'?'†':''}</sup></span>`).join('');
-  $('#affiliations').innerHTML=data.institutions.map(i=>`<li>${esc(i)}</li>`).join('');
  } catch(e) {
   $('#task-grid').innerHTML='<p class="empty" role="alert">Results could not load. Please reload, or read the linked paper.</p>';
   $('#rank-rows').innerHTML='<tr><td colspan="7">Results could not load. The PDF remains available above.</td></tr>';console.error(e);

@@ -2,7 +2,7 @@
 
 Static project page for **Accelerate Bench: Evaluating Agents for Application-Level Program Optimization**.
 
-Site: https://adastraabyssoque.github.io/accelerate-bench-page/
+Site: https://acceleratebench.com/
 
 This repository hosts the website. The benchmark code and versioned task packages are being prepared separately.
 
