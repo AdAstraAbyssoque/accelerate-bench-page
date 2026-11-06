@@ -975,7 +975,8 @@
       "affiliations": [
         1
       ],
-      "role": "First author"
+      "role": "First author",
+      "email": "bliu690@connect.hkust-gz.edu.cn"
     },
     {
       "name": "Yuhan Li",
@@ -1025,7 +1026,8 @@
     {
       "name": "Jia Li",
       "affiliations": [
-        2
+        2,
+        3
       ],
       "role": ""
     },
