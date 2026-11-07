@@ -4,7 +4,7 @@ Static project page for **Accelerate Bench: Evaluating Agents for Application-Le
 
 Site: https://acceleratebench.com/
 
-This repository hosts the website. The benchmark code and versioned task packages are being prepared separately.
+This repository hosts the website. [Benchmark code](https://github.com/AdAstraAbyssoque/accelerate-bench) is available on GitHub; [versioned task packages and access requests](https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench) are on Hugging Face.
 
 ## Preview and deploy
 
@@ -19,7 +19,7 @@ DeepSeek-V4.1-Flash (0910) identifies the historical `deepseek-v4.1-flash-expire
 
 The task illustrations and control layout build on the authors' earlier SciAccel website. The paper/results/findings structure also references ExplorationBench (https://explorationbench.com/). The Tencent Hy wordmark comes from the Hy-MT2 paper source (https://arxiv.org/abs/2605.22064) and remains its owner's mark. Font licenses are supplied in `dist/assets/fonts/`.
 
-The PDF is an arXiv preparation draft. The arXiv record and benchmark package links will be added after release. No acceptance status or arXiv identifier is implied.
+The PDF is an arXiv preparation draft. The arXiv record will be added after release. No acceptance status or arXiv identifier is implied.
 
 ## License
 
