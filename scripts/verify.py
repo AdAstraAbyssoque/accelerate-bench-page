@@ -4,8 +4,8 @@ from urllib.parse import urlsplit,unquote
 import json,re
 root=Path(__file__).resolve().parents[1]/'dist'
 data=json.loads((root/'assets/results.json').read_text())
-assert len(data['tasks'])==32 and len(data['models'])==12
-assert all(len(t['rewards_percent'])==12 for t in data['tasks'])
+assert len(data['tasks'])==32 and len(data['models'])==16
+assert all(len(t['rewards_percent'])==16 for t in data['tasks'])
 assert [a['name'] for a in data['authors']]==['Bowen Liu','Yuhan Li','Nuo Chen','Weile Luo','Miao Peng','Qintong Zhang','Qifan Zhang','Jia Li','Ziqi Gao','Lydell Huang']
 assert all((1 in a['affiliations']) == (a['name'] not in ['Jia Li','Ziqi Gao']) for a in data['authors'])
 refs=[]
@@ -29,7 +29,7 @@ for p in root.rglob('*'):
  if p.suffix in ['.html','.css','.js','.json','.svg','.md','.txt']:
   s=p.read_text()
   assert not re.search(r'/Users/|/dockerdata|/taijifs|\.woa\.com|sk-[A-Za-z0-9]{24}',s),p
-print(f'PASS: 32 tasks, 12 models, author affiliations, {len(refs)} asset references and public-source scan.')
+print(f'PASS: 32 tasks, 16 models, author affiliations, {len(refs)} asset references and public-source scan.')
 
 # Metadata must agree with the deployed canonical host and the reported authors.
 from xml.etree import ElementTree

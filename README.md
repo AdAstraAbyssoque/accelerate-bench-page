@@ -13,13 +13,13 @@ Run `python3 scripts/verify.py` before committing. GitHub Actions deploys `dist/
 
 ## Content and provenance
 
-`dist/assets/results.json` preserves the rounded numbers reported in the September 26, 2026 manuscript: 12 agents, 32 tasks, 384 selected main-table outcomes. Eight configurations select the median-reward run from the latest three eligible scored attempts; GPT-6 Astra, Gemini-3.8-Flash, Kimi K3 (max), and GLM-5.3 (max) use their sole attempt. Performance and usage for each pair come from the same record. The 480-run analysis cohort is separate. Null per-task rewards indicate failed correctness. Do not recompute main-table aggregates from the rounded per-task table.
+`dist/assets/results.json` holds the rounded benchmark v1.1 numbers of paper Table 1 (manuscript of November 16, 2026): 16 agents, 32 tasks, 512 outcomes. Every agent runs once per task and this run is scored; all final programs are scored once on the same machine. `scripts/build_results_v11.py` rebuilds the file from the frozen snapshot behind Table 1 (`v11-round1-unified-20261116`: Table 1 rows and per-task first-run rewards); task metadata, areas and authors keep their published values. Gemini-3.8-Flash is not listed because its v1.1 runs are not yet complete. On three tasks where the provider's safety system stopped a Claude Opus 5.5 run, the score of Claude Sonnet 5.5 on the same task is used, as in the paper. Null per-task rewards indicate failed correctness. Do not recompute main-table aggregates from the rounded per-task table. The 480-run analysis cohort is separate and uses benchmark v1.0.
 
-DeepSeek-V4.1-Flash (0910) identifies the historical `deepseek-v4.1-flash-expires-on-0910` deployment. Subsequent model versions require new evidence and separate rows; this page does not claim new evaluations have completed.
+DeepSeek-V4.1-Flash-1017 identifies the model version evaluated on benchmark v1.1; the historical `deepseek-v4.1-flash-expires-on-0910` deployment belongs to v1.0. Benchmark versions are never combined.
 
 The task illustrations and control layout build on the authors' earlier SciAccel website. The paper/results/findings structure also references ExplorationBench (https://explorationbench.com/). The Tencent Hy wordmark comes from the Hy-MT2 paper source (https://arxiv.org/abs/2605.22064) and remains its owner's mark. Font licenses are supplied in `dist/assets/fonts/`.
 
-The PDF is an arXiv preparation draft. The arXiv record will be added after release. No acceptance status or arXiv identifier is implied.
+The PDF is the benchmark v1.1 preprint prepared for arXiv. The arXiv record will be added after release. No acceptance status or arXiv identifier is implied.
 
 ## License
 

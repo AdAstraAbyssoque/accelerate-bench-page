@@ -1,1 +1,3 @@
 Provider logos reused from the Accelerate Bench website and paper assets. The original website assets identify their source as @lobehub/icons-static-svg 1.95.0, https://github.com/lobehub/lobe-icons (MIT; see LICENSE). OpenAI and Gemini marks are reused from the final paper source (figures/model-logos). Used solely to identify the model providers; brand marks remain property of their respective owners.
+
+The Claude mark (claude-color.svg) was added on 2026-11-16 from the same pinned @lobehub/icons-static-svg 1.95.0 npm tarball (registry integrity verified) for Claude Opus 5.5 and Claude Sonnet 5.5.
