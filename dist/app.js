@@ -10,8 +10,9 @@ function modelIcon(name) {
  return source?`<img class="model-icon" src="assets/models/${source}.svg" alt="" width="20" height="20">`:`<span class="model-icon letter" aria-hidden="true">${/^Gemini/.test(name)?'✦':'G'}</span>`;
 }
 function modelLabel(name) {return `<span class="model-label">${modelIcon(name)}<span>${esc(name)}</span></span>`;}
+const heroAgents=['Claude Opus 5.5','GPT-6 Astra','DeepSeek-V4-Pro'];
 function renderHero() {
- $('#hero-ranks').innerHTML=data.models.slice(0,3).map(m=>`<div class="hero-rank">${modelIcon(m.name)}<span class="rank-name">${esc(m.name)}</span><strong>${m.score.toFixed(1)}%</strong><div class="mini-track" aria-hidden="true"><div class="mini-fill" style="width:${m.score}%"></div></div></div>`).join('');
+ $('#hero-ranks').innerHTML=data.models.filter(m=>heroAgents.includes(m.name)).map(m=>`<div class="hero-rank">${modelIcon(m.name)}<span class="rank-name">${esc(m.name)}</span><strong>${m.score.toFixed(1)}%</strong><div class="mini-track" aria-hidden="true"><div class="mini-fill" style="width:${m.score}%"></div></div></div>`).join('');
 }
 function renderResults() {
  const rows=[...data.models].sort((a,b)=>b[metric]-a[metric]);
