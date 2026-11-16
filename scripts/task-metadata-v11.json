@@ -1,0 +1,322 @@
+{
+ "abyss-genome-assembly": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "ABySS de Bruijn graph short-read genome assembly",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 1800.0,
+  "version": "1.1.0"
+ },
+ "datalife-io-monitoring": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "DataLife I/O monitoring, dataflow graph and critical-path analysis",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 14000,
+  "version": "1.1.0"
+ },
+ "fegrass-graph-sparsification": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "feGRASS-derived spectral graph sparsification and factorization",
+  "memory_mb": 4096,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 4096,
+  "verifier_timeout_sec": 7200,
+  "version": "3.1.0"
+ },
+ "fluidity-heat-checkpoint": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "Fluidity MPI mesh redistribution, DG heat solve and detector checkpoint restart",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 14000,
+  "version": "1.1.0"
+ },
+ "gpaw-fd-dft-restart": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "GPAW finite-difference PAW DFT with geometry steps and checkpoint restart",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 14000,
+  "version": "1.1.0"
+ },
+ "gromacs-molecular-dynamics": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "GROMACS 2020.4 molecular dynamics preparation and mdrun",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 23400,
+  "version": "12.1.0"
+ },
+ "hpcg-multigrid-pcg": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "HPCG 3.1 sparse setup and multigrid preconditioned CG solve",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "12.1.0"
+ },
+ "hpl-dense-lu": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "HPL 2.3 MPI dense LU factorization and solve",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "11.1.0"
+ },
+ "icon-atmosphere-checkpoint": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "ICON atmosphere model run with full-field history and checkpoint restart",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 12000,
+  "version": "1.1.0"
+ },
+ "io500-file-io": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "IO500 MPI file I/O and metadata lifecycle",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "12.1.0"
+ },
+ "lammps-molecular-dynamics": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "LAMMPS molecular dynamics simulations",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 1800.0,
+  "version": "4.2.0"
+ },
+ "mhm2-metagenome-assembly": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "MHM2 two-rank metagenome coassembly and scaffolding",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 9000,
+  "version": "1.1.1"
+ },
+ "minivite-louvain": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "miniVite distributed Louvain community detection",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "11.1.0"
+ },
+ "mpas-atmosphere-restart": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "MPAS-Atmosphere initialization, forecast and restart",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 14000,
+  "version": "1.1.0"
+ },
+ "mrbayes-phylogenetics": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "MrBayes MC3 phylogenetic inference, checkpoint recovery and posterior analysis",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "2.1.0"
+ },
+ "nemo-lock-exchange": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "NEMO ocean LOCK_EXCHANGE simulation with checkpoint restart",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 14000,
+  "version": "1.1.0"
+ },
+ "nufft-imaging": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "Nonuniform FFT inverse imaging and reconstruction",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 12000,
+  "version": "1.1.0"
+ },
+ "openfoam-cavity-piso": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "OpenFOAM transient incompressible PISO cavity flow",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 2400.0,
+  "version": "1.1.0"
+ },
+ "openmc-multigroup-transport": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "OpenMC multigroup Monte Carlo transport with statepoint restart",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "3.1.0"
+ },
+ "paged-lm-generation": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "Pretrained language-model generation with a paged KV cache and checkpoint",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 12000,
+  "version": "1.1.0"
+ },
+ "palabos-lattice-boltzmann": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "Palabos 2.3.0 lattice-Boltzmann cavity and shear-wave simulations",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "2.1.0"
+ },
+ "presto-pulsar-search": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "PRESTO FFT, acceleration search, candidate folding and plots",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 7200,
+  "version": "2.1.0"
+ },
+ "qe-scf-nscf-dos": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "Quantum ESPRESSO SCF, NSCF, density and DOS with checkpoint recovery",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 14000,
+  "version": "1.3.0"
+ },
+ "qibotn-tensor-network-circuits": {
+  "agent_timeout_sec": 28800,
+  "cpus": 8,
+  "description": "QiboTN tensor-network quantum circuit simulation",
+  "memory_mb": 32768,
+  "verifier_cpus": 8,
+  "verifier_memory_mb": 32768,
+  "verifier_timeout_sec": 50000.0,
+  "version": "3.3.0"
+ },
+ "quest-circuit-simulation": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "QuEST v4.2.0 state-vector and density-matrix circuit simulation",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 3600.0,
+  "version": "3.1.0"
+ },
+ "shengbte-phonon-transport": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "ShengBTE phonon scattering and lattice thermal conductivity",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 14000,
+  "version": "1.1.0"
+ },
+ "siesta-dft-restart": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "SIESTA self-consistent DFT with density-matrix restart",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 14000,
+  "version": "1.3.0"
+ },
+ "su2-transonic-euler": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "SU2 transonic Euler CFD on NACA0012",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 14000.0,
+  "version": "2.1.0"
+ },
+ "thundersvm-train-predict": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "ThunderSVM training, model save, reload and prediction",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 3600.0,
+  "version": "4.4.0"
+ },
+ "tucker-reconstruction": {
+  "agent_timeout_sec": 28800,
+  "cpus": 8,
+  "description": "TAPP Tucker tensor compression and reconstruction",
+  "memory_mb": 16384,
+  "verifier_cpus": 8,
+  "verifier_memory_mb": 16384,
+  "verifier_timeout_sec": 7200.0,
+  "version": "3.2.0"
+ },
+ "vpic-harris-reconnection": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "VPIC two-rank Harris-sheet reconnection with diagnostics and checkpoint",
+  "memory_mb": 6144,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 6144,
+  "verifier_timeout_sec": 9000,
+  "version": "1.3.0"
+ },
+ "wtdbg2-long-read-assembly": {
+  "agent_timeout_sec": 28800,
+  "cpus": 4,
+  "description": "wtdbg2 long-read assembly and POA consensus",
+  "memory_mb": 8192,
+  "verifier_cpus": 4,
+  "verifier_memory_mb": 8192,
+  "verifier_timeout_sec": 1800.0,
+  "version": "2.1.0"
+ }
+}

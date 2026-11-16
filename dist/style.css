@@ -24,3 +24,18 @@ header{height:76px;position:sticky;top:0;background:#ffffffee;backdrop-filter:bl
 
 .task-card-visual{padding-inline:8px}.task-card img{height:116px}
 @media(max-width:760px){.task-card img{height:108px}.bar-row .model-label{font-size:10px;line-height:1.45}.bar-row{grid-template-columns:145px 1fr 43px;min-height:26px}.bar-row .model-icon{flex-shrink:0}.bar-chart{padding-top:15px}}
+.steps{list-style:none;margin:8px 0 0;padding:0}
+.steps>li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:60px;border-top:1px solid #d7e1eb;padding:26px 0}
+.steps>li:last-child{border-bottom:1px solid #d7e1eb}
+.step-copy span{color:#7898bc;font:10px/1.5 var(--mono)}
+.step-copy h3{font-size:15px;margin:10px 0 8px}
+.step-copy p,.step-body p{font-size:12px;color:#7d8c9e;line-height:1.85;margin:0}
+.step-body{min-width:0}
+.step-body .button{margin-top:16px}
+.step-code{border:1px solid #d9e2ec;border-radius:7px;background:#f4f7fb;padding:15px 18px;font-size:11px;line-height:1.8;white-space:pre;overflow-x:auto;color:#4f6884}
+.step-code code{font:inherit}
+.step-note{margin-top:12px!important;font-size:11px!important}
+.step-note code,.step-copy code{font-family:var(--mono);font-size:10px;color:#56708d;word-break:break-word}
+.step-note a{color:#587393;border-bottom:1px solid #c6d4e4}
+.model-mark{font-size:.7em;margin-left:2px;color:#7b8ea5;cursor:help}
+@media(max-width:760px){.steps>li{grid-template-columns:1fr;gap:16px}}

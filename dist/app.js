@@ -9,16 +9,16 @@ function modelIcon(name) {
  const source = /^Claude/.test(name)?'claude-color':/^DeepSeek/.test(name)?'deepseek-color':/^Hy/.test(name)?'hunyuan-color':/^GLM/.test(name)?'zai':/^Kimi/.test(name)?'kimi':/^Grok/.test(name)?'grok':/^Gemini/.test(name)?'gemini-color':/^GPT/.test(name)?'openai':null;
  return source?`<img class="model-icon" src="assets/models/${source}.svg" alt="" width="20" height="20">`:`<span class="model-icon letter" aria-hidden="true">${/^Gemini/.test(name)?'✦':'G'}</span>`;
 }
-function modelLabel(name) {return `<span class="model-label">${modelIcon(name)}<span>${esc(name)}</span></span>`;}
+function modelLabel(name, stopped=[]) {return `<span class="model-label">${modelIcon(name)}<span>${esc(name)}${stopped.length?`<sup class="model-mark" title="${esc(`The provider's safety system stopped the runs on ${stopped.join(', ')}; they count as failures.`)}">†</sup>`:''}</span></span>`;}
 const heroAgents=['Claude Opus 5.5','GPT-6 Astra','DeepSeek-V4-Pro'];
 function renderHero() {
  $('#hero-ranks').innerHTML=data.models.filter(m=>heroAgents.includes(m.name)).map(m=>`<div class="hero-rank">${modelIcon(m.name)}<span class="rank-name">${esc(m.name)}</span><strong>${m.score.toFixed(1)}%</strong><div class="mini-track" aria-hidden="true"><div class="mini-fill" style="width:${m.score}%"></div></div></div>`).join('');
 }
 function renderResults() {
  const rows=[...data.models].sort((a,b)=>b[metric]-a[metric]);
- $('#rank-rows').innerHTML=rows.map((m,i)=>`<tr><td>${String(i+1).padStart(2,'0')}</td><td>${modelLabel(m.name)}</td><td>${esc(m.harness)}</td>${['score','gm','a125','a2'].map(k=>`<td>${k==='score'?`<span class="score-cell" style="--fill:${m.score}%"><strong>${format(m[k],k)}</strong></span>`:format(m[k],k)}</td>`).join('')}</tr>`).join('');
+ $('#rank-rows').innerHTML=rows.map((m,i)=>`<tr><td>${String(i+1).padStart(2,'0')}</td><td>${modelLabel(m.name,m.stopped_tasks)}</td><td>${esc(m.harness)}</td>${['score','gm','a125','a2'].map(k=>`<td>${k==='score'?`<span class="score-cell" style="--fill:${m.score}%"><strong>${format(m[k],k)}</strong></span>`:format(m[k],k)}</td>`).join('')}</tr>`).join('');
  const max=Math.max(...rows.map(m=>m[metric]));
- $('#leaderboard-chart').innerHTML=rows.map(m=>`<div class="bar-row">${modelLabel(m.name)}<div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:${m[metric]/max*100}%"></div></div><span class="bar-value">${format(m[metric],metric)}</span></div>`).join('');
+ $('#leaderboard-chart').innerHTML=rows.map(m=>`<div class="bar-row">${modelLabel(m.name,m.stopped_tasks)}<div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:${m[metric]/max*100}%"></div></div><span class="bar-value">${format(m[metric],metric)}</span></div>`).join('');
  document.querySelectorAll('[data-sort]').forEach(b=>{const selected=b.dataset.sort===metric;b.parentElement.removeAttribute('aria-sort');if(selected)b.parentElement.setAttribute('aria-sort','descending');b.textContent=sortLabels[b.dataset.sort]+(selected?' ↓':' ↕');});
  $('#metric').value=metric;
 }
@@ -35,7 +35,7 @@ function renderTasks() {
 }
 function openTask(id) {
  const t=data.tasks.find(x=>x.id===id);if(!t)return;
- $('#task-details').innerHTML=`<p class="eyebrow">${esc(t.area)}</p><h2 id="task-title">${esc(t.name)}</h2><div class="task-meta"><span>Task version<strong>${esc(t.version)}</strong></span><span>CPU budget<strong>${t.cpus} CPUs</strong></span><span>Memory<strong>${t.memory_gib} GiB</strong></span><span>Agent budget<strong>${t.agent_hours} hours</strong></span></div><img class="task-detail-diagram" src="${esc(t.diagram)}" alt="Illustration of ${esc(t.name)}"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody>${data.models.map((m,i)=>`<tr><td>${modelLabel(m.name)}</td><td>${t.rewards_percent[i]===null?'Failed correctness':t.rewards_percent[i].toFixed(1)+'%'}</td></tr>`).join('')}</tbody></table></div>`;
+ $('#task-details').innerHTML=`<p class="eyebrow">${esc(t.area)}</p><h2 id="task-title">${esc(t.name)}</h2><div class="task-meta"><span>Task version<strong>${esc(t.version)}</strong></span><span>CPU budget<strong>${t.cpus} CPUs</strong></span><span>Memory<strong>${t.memory_gib} GiB</strong></span><span>Agent budget<strong>${t.agent_hours} hours</strong></span></div><img class="task-detail-diagram" src="${esc(t.diagram)}" alt="Illustration of ${esc(t.name)}"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody>${data.models.map((m,i)=>`<tr><td>${modelLabel(m.name)}</td><td>${(t.stopped_agents||[]).includes(m.name)?'Stopped by the provider’s safety system (scored as a failure)':t.rewards_percent[i]===null?'Failed correctness':t.rewards_percent[i].toFixed(1)+'%'}</td></tr>`).join('')}</tbody></table></div>`;
  $('#task-dialog').showModal();
 }
 document.querySelectorAll('dialog').forEach(d=>{

@@ -1,7 +1,7 @@
 {
  "title": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
  "snapshot": "Benchmark v1.1, first run of each agent; all final programs scored on one machine (manuscript of 16 November 2026)",
- "metric_note": "Table 1 reports 512 agent-task outcomes: 16 agents and the 32 tasks of benchmark v1.1. Every agent runs once per task and this run is scored; all final programs are scored on the same machine. A run stopped by an infrastructure or model-API failure is replaced by a new run fixed in advance; failures caused by the agent are scored. Gemini-3.8-Flash is not listed because its v1.1 runs are not yet complete. On three tasks where the provider's safety system stopped a Claude Opus 5.5 run, the score of Claude Sonnet 5.5 on the same task is used. Per-task rewards are rounded; recompute nothing from them.",
+ "metric_note": "Table 1 reports 512 agent-task outcomes: 16 agents and the 32 tasks of benchmark v1.1. Every agent runs once per task and this run is scored; all final programs are scored on the same machine. A run stopped by an infrastructure or model-API failure is replaced by a new run fixed in advance; failures caused by the agent are scored. Gemini-3.8-Flash is not listed because its v1.1 runs are not yet complete. On Graph sparsification, PRESTO and VPIC, the provider's safety system stopped the Claude Opus 5.5 run; these runs count as failures with zero reward. On its other 29 tasks, Claude Opus 5.5 scores 65.6%. Per-task rewards are rounded; recompute nothing from them.",
  "models": [
   {
    "name": "Claude Sonnet 5.5",
@@ -13,19 +13,25 @@
    "a125": 100.0,
    "a2": 71.9,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "Claude Opus 5.5",
    "harness": "Claude Code",
    "effort": "high",
-   "score": 65.2,
-   "ref": 64.1,
-   "gm": 4.4,
-   "a125": 93.8,
-   "a2": 71.9,
+   "score": 59.4,
+   "ref": 58.3,
+   "gm": 3.94,
+   "a125": 84.4,
+   "a2": 68.8,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": [
+    "Graph sparsification",
+    "PRESTO",
+    "VPIC"
+   ]
   },
   {
    "name": "GPT-6.1 Sol",
@@ -37,7 +43,8 @@
    "a125": 78.1,
    "a2": 50.0,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "GPT-6 Astra",
@@ -49,7 +56,8 @@
    "a125": 75.0,
    "a2": 53.1,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "Hy4-Preview",
@@ -61,7 +69,8 @@
    "a125": 71.9,
    "a2": 50.0,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "Hy4",
@@ -73,7 +82,8 @@
    "a125": 75.0,
    "a2": 46.9,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "Kimi K3",
@@ -85,7 +95,8 @@
    "a125": 68.8,
    "a2": 40.6,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "DeepSeek-V4.1-Flash-1017",
@@ -97,7 +108,8 @@
    "a125": 65.6,
    "a2": 34.4,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "GLM-5.3",
@@ -109,7 +121,8 @@
    "a125": 65.6,
    "a2": 40.6,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "GLM-5.3-Flash",
@@ -121,7 +134,8 @@
    "a125": 68.8,
    "a2": 34.4,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "DeepSeek-V4-Pro",
@@ -133,7 +147,8 @@
    "a125": 62.5,
    "a2": 34.4,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "GPT-6.1 Terra",
@@ -145,7 +160,8 @@
    "a125": 75.0,
    "a2": 25.0,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "DeepSeek-V4-Flash",
@@ -157,7 +173,8 @@
    "a125": 56.2,
    "a2": 34.4,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "GLM-5.2",
@@ -169,7 +186,8 @@
    "a125": 46.9,
    "a2": 37.5,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "Grok 4.6",
@@ -181,7 +199,8 @@
    "a125": 50.0,
    "a2": 34.4,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   },
   {
    "name": "Hy3",
@@ -193,7 +212,8 @@
    "a125": 37.5,
    "a2": 28.1,
    "steps": null,
-   "tokens": null
+   "tokens": null,
+   "stopped_tasks": []
   }
  ],
  "tasks": [
@@ -203,11 +223,11 @@
    "area": "Molecular simulation & electronic structure",
    "area_id": 0,
    "diagram": "assets/tasks/gromacs_cpu.svg",
-   "version": "12.0.3",
+   "version": "12.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 390.0,
+   "agent_hours": 8,
+   "verify_minutes": 390,
    "rewards_percent": [
     77.6,
     77.4,
@@ -225,7 +245,8 @@
     50.3,
     45.9,
     57.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "lammps_cpu",
@@ -233,11 +254,11 @@
    "area": "Molecular simulation & electronic structure",
    "area_id": 0,
    "diagram": "assets/tasks/lammps_cpu.svg",
-   "version": "4.1.3",
+   "version": "4.2.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 30.0,
+   "agent_hours": 8,
+   "verify_minutes": 30,
    "rewards_percent": [
     66.5,
     85.3,
@@ -255,7 +276,8 @@
     59.6,
     0.0,
     60.5
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "gpaw_cpu",
@@ -263,10 +285,10 @@
    "area": "Molecular simulation & electronic structure",
    "area_id": 0,
    "diagram": "assets/tasks/gpaw_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     57.9,
@@ -285,7 +307,8 @@
     13.8,
     14.2,
     1.6
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "qe_cpu",
@@ -293,10 +316,10 @@
    "area": "Molecular simulation & electronic structure",
    "area_id": 0,
    "diagram": "assets/tasks/qe_cpu.svg",
-   "version": "1.2.2",
+   "version": "1.3.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     73.4,
@@ -315,7 +338,8 @@
     8.8,
     11.6,
     null
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "siesta_cpu",
@@ -323,10 +347,10 @@
    "area": "Molecular simulation & electronic structure",
    "area_id": 0,
    "diagram": "assets/tasks/siesta_cpu.svg",
-   "version": "1.2.2",
+   "version": "1.3.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     69.2,
@@ -345,7 +369,8 @@
     31.4,
     29.9,
     32.7
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "fluidity_cpu",
@@ -353,10 +378,10 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/fluidity_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     40.1,
@@ -375,7 +400,8 @@
     16.5,
     10.7,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "icon_cpu",
@@ -383,11 +409,11 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/icon_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 200.0,
+   "agent_hours": 8,
+   "verify_minutes": 200,
    "rewards_percent": [
     33.2,
     34.0,
@@ -405,7 +431,8 @@
     0.0,
     5.4,
     3.6
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "mpas_a_cpu",
@@ -413,10 +440,10 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/mpas_a_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     47.1,
@@ -435,7 +462,8 @@
     2.7,
     null,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "nemo_cpu",
@@ -443,10 +471,10 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/nemo_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     59.5,
@@ -465,7 +493,8 @@
     2.4,
     0.0,
     10.3
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "openfoam_cpu",
@@ -473,11 +502,11 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/openfoam_cpu.svg",
-   "version": "1.0.3",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 40.0,
+   "agent_hours": 8,
+   "verify_minutes": 40,
    "rewards_percent": [
     80.5,
     85.8,
@@ -495,7 +524,8 @@
     19.5,
     null,
     1.3
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "palabos_cpu",
@@ -503,11 +533,11 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/palabos_cpu.svg",
-   "version": "2.0.2",
+   "version": "2.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     91.2,
     80.5,
@@ -525,7 +555,8 @@
     59.7,
     36.8,
     15.5
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "su2_cpu",
@@ -533,11 +564,11 @@
    "area": "Fluids, atmosphere & ocean",
    "area_id": 1,
    "diagram": "assets/tasks/su2_cpu.svg",
-   "version": "2.0.2",
+   "version": "2.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 60.0,
+   "agent_hours": 8,
+   "verify_minutes": 233.3,
    "rewards_percent": [
     66.4,
     79.3,
@@ -555,7 +586,8 @@
     31.6,
     null,
     18.5
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "openmc_cpu",
@@ -563,11 +595,11 @@
    "area": "Transport, plasma & astronomy",
    "area_id": 2,
    "diagram": "assets/tasks/openmc_cpu.svg",
-   "version": "3.0.4",
+   "version": "3.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     46.0,
     55.2,
@@ -585,7 +617,8 @@
     3.2,
     21.5,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "shengbte_cpu",
@@ -593,10 +626,10 @@
    "area": "Transport, plasma & astronomy",
    "area_id": 2,
    "diagram": "assets/tasks/shengbte_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     83.4,
@@ -615,7 +648,8 @@
     56.6,
     54.5,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "vpic_cpu",
@@ -623,14 +657,14 @@
    "area": "Transport, plasma & astronomy",
    "area_id": 2,
    "diagram": "assets/tasks/vpic_cpu.svg",
-   "version": "1.2.2",
+   "version": "1.3.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 150.0,
+   "agent_hours": 8,
+   "verify_minutes": 150,
    "rewards_percent": [
     49.5,
-    49.5,
+    null,
     3.9,
     0.0,
     10.9,
@@ -645,6 +679,9 @@
     0.0,
     0.0,
     null
+   ],
+   "stopped_agents": [
+    "Claude Opus 5.5"
    ]
   },
   {
@@ -653,14 +690,14 @@
    "area": "Transport, plasma & astronomy",
    "area_id": 2,
    "diagram": "assets/tasks/presto_cpu.svg",
-   "version": "2.0.2",
+   "version": "2.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     47.6,
-    47.6,
+    null,
     25.8,
     14.8,
     20.2,
@@ -675,6 +712,9 @@
     17.0,
     5.7,
     null
+   ],
+   "stopped_agents": [
+    "Claude Opus 5.5"
    ]
   },
   {
@@ -683,11 +723,11 @@
    "area": "Bioinformatics & phylogenetics",
    "area_id": 3,
    "diagram": "assets/tasks/abyss_cpu.svg",
-   "version": "1.0.3",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 30.0,
+   "agent_hours": 8,
+   "verify_minutes": 30,
    "rewards_percent": [
     85.5,
     86.1,
@@ -705,7 +745,8 @@
     null,
     62.0,
     null
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "mhm2_cpu",
@@ -713,11 +754,11 @@
    "area": "Bioinformatics & phylogenetics",
    "area_id": 3,
    "diagram": "assets/tasks/mhm2_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.1",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 150.0,
+   "agent_hours": 8,
+   "verify_minutes": 150,
    "rewards_percent": [
     70.6,
     51.1,
@@ -735,7 +776,8 @@
     11.8,
     null,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "mrbayes_cpu",
@@ -743,11 +785,11 @@
    "area": "Bioinformatics & phylogenetics",
    "area_id": 3,
    "diagram": "assets/tasks/mrbayes_cpu.svg",
-   "version": "2.0.2",
+   "version": "2.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     68.8,
     88.9,
@@ -765,7 +807,8 @@
     15.0,
     13.8,
     0.1
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "wtdbg2_cpu",
@@ -773,11 +816,11 @@
    "area": "Bioinformatics & phylogenetics",
    "area_id": 3,
    "diagram": "assets/tasks/wtdbg2_cpu.svg",
-   "version": "2.0.3",
+   "version": "2.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 30.0,
+   "agent_hours": 8,
+   "verify_minutes": 30,
    "rewards_percent": [
     69.8,
     75.6,
@@ -795,7 +838,8 @@
     26.9,
     null,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "hpcg_cpu",
@@ -803,11 +847,11 @@
    "area": "Numerics, tensors & graphs",
    "area_id": 4,
    "diagram": "assets/tasks/hpcg_cpu.svg",
-   "version": "12.0.3",
+   "version": "12.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     92.9,
     98.9,
@@ -825,7 +869,8 @@
     93.5,
     98.5,
     93.2
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "hpl_cpu",
@@ -833,11 +878,11 @@
    "area": "Numerics, tensors & graphs",
    "area_id": 4,
    "diagram": "assets/tasks/hpl_cpu.svg",
-   "version": "11.0.2",
+   "version": "11.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     23.1,
     26.2,
@@ -855,7 +900,8 @@
     17.5,
     55.1,
     null
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "ipcc22_sparsify_cpu",
@@ -863,14 +909,14 @@
    "area": "Numerics, tensors & graphs",
    "area_id": 4,
    "diagram": "assets/tasks/ipcc22_sparsify_cpu.svg",
-   "version": "3.0.2",
+   "version": "3.1.0",
    "cpus": 4,
    "memory_gib": 4,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     88.4,
-    88.4,
+    null,
     85.9,
     83.8,
     74.3,
@@ -885,6 +931,9 @@
     0.2,
     43.9,
     65.8
+   ],
+   "stopped_agents": [
+    "Claude Opus 5.5"
    ]
   },
   {
@@ -893,11 +942,11 @@
    "area": "Numerics, tensors & graphs",
    "area_id": 4,
    "diagram": "assets/tasks/minivite_cpu.svg",
-   "version": "11.0.2",
+   "version": "11.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     38.6,
     53.4,
@@ -915,7 +964,8 @@
     0.0,
     19.3,
     20.1
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "pac2020_nufft_cpu",
@@ -923,11 +973,11 @@
    "area": "Numerics, tensors & graphs",
    "area_id": 4,
    "diagram": "assets/tasks/pac2020_nufft_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 200.0,
+   "agent_hours": 8,
+   "verify_minutes": 200,
    "rewards_percent": [
     67.7,
     null,
@@ -945,7 +995,8 @@
     72.4,
     62.5,
     51.9
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "pac_tensor_cpu",
@@ -953,11 +1004,11 @@
    "area": "Numerics, tensors & graphs",
    "area_id": 4,
    "diagram": "assets/tasks/pac_tensor_cpu.svg",
-   "version": "3.1.6",
+   "version": "3.2.0",
    "cpus": 8,
    "memory_gib": 16,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     79.6,
     91.3,
@@ -975,7 +1026,8 @@
     70.7,
     78.5,
     39.9
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "quest_cpu",
@@ -983,11 +1035,11 @@
    "area": "Quantum circuits",
    "area_id": 5,
    "diagram": "assets/tasks/quest_cpu.svg",
-   "version": "3.0.5",
+   "version": "3.1.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 60.0,
+   "agent_hours": 8,
+   "verify_minutes": 60,
    "rewards_percent": [
     80.5,
     82.0,
@@ -1005,7 +1057,8 @@
     70.2,
     72.1,
     0.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "asc26_qibotn_cpu",
@@ -1013,10 +1066,10 @@
    "area": "Quantum circuits",
    "area_id": 5,
    "diagram": "assets/tasks/asc26_qibotn_cpu.svg",
-   "version": "3.2.7",
+   "version": "3.3.0",
    "cpus": 8,
    "memory_gib": 32,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 833.3,
    "rewards_percent": [
     95.1,
@@ -1035,7 +1088,8 @@
     98.9,
     99.5,
     99.3
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "pac_mqa_cpu",
@@ -1043,11 +1097,11 @@
    "area": "Machine learning",
    "area_id": 6,
    "diagram": "assets/tasks/pac_mqa_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 200.0,
+   "agent_hours": 8,
+   "verify_minutes": 200,
    "rewards_percent": [
     92.6,
     91.3,
@@ -1065,7 +1119,8 @@
     91.8,
     91.6,
     90.2
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "pac_thundersvm_cpu",
@@ -1073,11 +1128,11 @@
    "area": "Machine learning",
    "area_id": 6,
    "diagram": "assets/tasks/pac_thundersvm_cpu.svg",
-   "version": "4.3.4",
+   "version": "4.4.0",
    "cpus": 4,
    "memory_gib": 8,
-   "agent_hours": 8.0,
-   "verify_minutes": 60.0,
+   "agent_hours": 8,
+   "verify_minutes": 60,
    "rewards_percent": [
     89.3,
     91.7,
@@ -1095,7 +1150,8 @@
     58.4,
     72.6,
     73.0
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "datalife_cpu",
@@ -1103,10 +1159,10 @@
    "area": "Scientific I/O",
    "area_id": 7,
    "diagram": "assets/tasks/datalife_cpu.svg",
-   "version": "1.0.2",
+   "version": "1.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
+   "agent_hours": 8,
    "verify_minutes": 233.3,
    "rewards_percent": [
     84.5,
@@ -1125,7 +1181,8 @@
     82.9,
     77.4,
     80.7
-   ]
+   ],
+   "stopped_agents": []
   },
   {
    "id": "io500_cpu",
@@ -1133,11 +1190,11 @@
    "area": "Scientific I/O",
    "area_id": 7,
    "diagram": "assets/tasks/io500_cpu.svg",
-   "version": "12.0.2",
+   "version": "12.1.0",
    "cpus": 4,
    "memory_gib": 6,
-   "agent_hours": 8.0,
-   "verify_minutes": 120.0,
+   "agent_hours": 8,
+   "verify_minutes": 120,
    "rewards_percent": [
     41.9,
     44.2,
@@ -1155,7 +1212,8 @@
     3.2,
     3.5,
     null
-   ]
+   ],
+   "stopped_agents": []
   }
  ],
  "areas": [
@@ -1254,7 +1312,7 @@
  ],
  "sources": {
   "leaderboard": "Paper Table 1 (benchmark v1.1)",
-  "tasks": "Paper appendix, resource allocation table",
+  "tasks": "task.toml of the released v1.1 task packages",
   "per_task": "First-run rewards on benchmark v1.1 from the frozen snapshot behind Table 1",
   "analysis": "Separate 480-run analysis cohort on benchmark v1.0; paper Section 5 and appendices"
  },
@@ -1266,12 +1324,15 @@
   "not_listed": [
    "Gemini-3.8-Flash"
   ],
-  "substituted_by_claude_sonnet_5_5": {
+  "stopped_by_provider_safety_system": {
    "Claude Opus 5.5": [
     "fegrass-graph-sparsification",
     "presto-pulsar-search",
     "vpic-harris-reconnection"
    ]
+  },
+  "score_on_other_tasks": {
+   "Claude Opus 5.5": 65.6
   }
  }
 }
