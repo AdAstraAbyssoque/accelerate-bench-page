@@ -4,7 +4,7 @@ Static project page for **Accelerate Bench: Evaluating Agents for Application-Le
 
 Site: https://acceleratebench.com/
 
-This repository hosts the website. [Benchmark code](https://github.com/AdAstraAbyssoque/accelerate-bench) is available on GitHub; [versioned task packages and access requests](https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench) are on Hugging Face.
+This repository hosts the website. [Benchmark code](https://github.com/AdAstraAbyssoque/accelerate-bench) is available on GitHub; [versioned task packages and access requests](https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench) are on Hugging Face, and 31 of the tasks are public on [Harbor Hub](https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench).
 
 ## Preview and deploy
 
