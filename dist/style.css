@@ -38,4 +38,7 @@ header{height:76px;position:sticky;top:0;background:#ffffffee;backdrop-filter:bl
 .step-note code,.step-copy code{font-family:var(--mono);font-size:10px;color:#56708d;word-break:break-word}
 .step-note a{color:#587393;border-bottom:1px solid #c6d4e4}
 .model-mark{font-size:.7em;margin-left:2px;color:#7b8ea5;cursor:help}
+.header-paper+.header-paper{border-left:0;padding-left:0;margin-left:0}
+.task-meta a{color:var(--blue);border-bottom:1px solid #c6d4e4}
+.task-meta a:hover{border-color:var(--blue)}
 @media(max-width:760px){.steps>li{grid-template-columns:1fr;gap:16px}}

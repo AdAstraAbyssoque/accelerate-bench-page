@@ -27,6 +27,8 @@ V10_TO_V11 = {
     'ipcc22_sparsify_cpu': 'fegrass-graph-sparsification', 'minivite_cpu': 'minivite-louvain', 'quest_cpu': 'quest-circuit-simulation',
     'asc26_qibotn_cpu': 'qibotn-tensor-network-circuits', 'pac_mqa_cpu': 'paged-lm-generation',
     'pac_thundersvm_cpu': 'thundersvm-train-predict', 'datalife_cpu': 'datalife-io-monitoring', 'io500_cpu': 'io500-file-io'}
+HARBOR_TASK_URL = 'https://hub.harborframework.com/tasks/accelerate-bench/'
+NOT_ON_HARBOR = {'icon-atmosphere-checkpoint'}  # its grid files must be fetched from the official source
 
 published = json.loads(OUT.read_text())
 stats = json.loads((SNAP / 'stats.json').read_text())
@@ -52,7 +54,8 @@ for t in published['tasks']:
     for r in rows:
         c = cells[r['system'], v11]
         rewards.append(round(100 * c['reward'], 1) if c['correct'] else None)
-    tasks.append(dict(t, version=meta['version'], cpus=meta['cpus'], memory_gib=whole(meta['memory_mb'] / 1024),
+    tasks.append(dict(t, directory=v11, harbor=None if v11 in NOT_ON_HARBOR else HARBOR_TASK_URL + v11,
+                      version=meta['version'], cpus=meta['cpus'], memory_gib=whole(meta['memory_mb'] / 1024),
                       agent_hours=whole(meta['agent_timeout_sec'] / 3600), verify_minutes=whole(meta['verifier_timeout_sec'] / 60),
                       rewards_percent=rewards, stopped_agents=[r['system'] for r in rows if v11 in r['stopped']]))
 own = {s: [c for (x, t), c in cells.items() if x == s and not c['stopped']] for s in stopped}

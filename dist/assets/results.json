@@ -246,7 +246,9 @@
     45.9,
     57.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "gromacs-molecular-dynamics",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/gromacs-molecular-dynamics"
   },
   {
    "id": "lammps_cpu",
@@ -277,7 +279,9 @@
     0.0,
     60.5
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "lammps-molecular-dynamics",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/lammps-molecular-dynamics"
   },
   {
    "id": "gpaw_cpu",
@@ -308,7 +312,9 @@
     14.2,
     1.6
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "gpaw-fd-dft-restart",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/gpaw-fd-dft-restart"
   },
   {
    "id": "qe_cpu",
@@ -339,7 +345,9 @@
     11.6,
     null
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "qe-scf-nscf-dos",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/qe-scf-nscf-dos"
   },
   {
    "id": "siesta_cpu",
@@ -370,7 +378,9 @@
     29.9,
     32.7
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "siesta-dft-restart",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/siesta-dft-restart"
   },
   {
    "id": "fluidity_cpu",
@@ -401,7 +411,9 @@
     10.7,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "fluidity-heat-checkpoint",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/fluidity-heat-checkpoint"
   },
   {
    "id": "icon_cpu",
@@ -432,7 +444,9 @@
     5.4,
     3.6
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "icon-atmosphere-checkpoint",
+   "harbor": null
   },
   {
    "id": "mpas_a_cpu",
@@ -463,7 +477,9 @@
     null,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "mpas-atmosphere-restart",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/mpas-atmosphere-restart"
   },
   {
    "id": "nemo_cpu",
@@ -494,7 +510,9 @@
     0.0,
     10.3
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "nemo-lock-exchange",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/nemo-lock-exchange"
   },
   {
    "id": "openfoam_cpu",
@@ -525,7 +543,9 @@
     null,
     1.3
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "openfoam-cavity-piso",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/openfoam-cavity-piso"
   },
   {
    "id": "palabos_cpu",
@@ -556,7 +576,9 @@
     36.8,
     15.5
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "palabos-lattice-boltzmann",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/palabos-lattice-boltzmann"
   },
   {
    "id": "su2_cpu",
@@ -587,7 +609,9 @@
     null,
     18.5
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "su2-transonic-euler",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/su2-transonic-euler"
   },
   {
    "id": "openmc_cpu",
@@ -618,7 +642,9 @@
     21.5,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "openmc-multigroup-transport",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/openmc-multigroup-transport"
   },
   {
    "id": "shengbte_cpu",
@@ -649,7 +675,9 @@
     54.5,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "shengbte-phonon-transport",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/shengbte-phonon-transport"
   },
   {
    "id": "vpic_cpu",
@@ -682,7 +710,9 @@
    ],
    "stopped_agents": [
     "Claude Opus 5.5"
-   ]
+   ],
+   "directory": "vpic-harris-reconnection",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/vpic-harris-reconnection"
   },
   {
    "id": "presto_cpu",
@@ -715,7 +745,9 @@
    ],
    "stopped_agents": [
     "Claude Opus 5.5"
-   ]
+   ],
+   "directory": "presto-pulsar-search",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/presto-pulsar-search"
   },
   {
    "id": "abyss_cpu",
@@ -746,7 +778,9 @@
     62.0,
     null
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "abyss-genome-assembly",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/abyss-genome-assembly"
   },
   {
    "id": "mhm2_cpu",
@@ -777,7 +811,9 @@
     null,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "mhm2-metagenome-assembly",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/mhm2-metagenome-assembly"
   },
   {
    "id": "mrbayes_cpu",
@@ -808,7 +844,9 @@
     13.8,
     0.1
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "mrbayes-phylogenetics",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/mrbayes-phylogenetics"
   },
   {
    "id": "wtdbg2_cpu",
@@ -839,7 +877,9 @@
     null,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "wtdbg2-long-read-assembly",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/wtdbg2-long-read-assembly"
   },
   {
    "id": "hpcg_cpu",
@@ -870,7 +910,9 @@
     98.5,
     93.2
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "hpcg-multigrid-pcg",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/hpcg-multigrid-pcg"
   },
   {
    "id": "hpl_cpu",
@@ -901,7 +943,9 @@
     55.1,
     null
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "hpl-dense-lu",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/hpl-dense-lu"
   },
   {
    "id": "ipcc22_sparsify_cpu",
@@ -934,7 +978,9 @@
    ],
    "stopped_agents": [
     "Claude Opus 5.5"
-   ]
+   ],
+   "directory": "fegrass-graph-sparsification",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/fegrass-graph-sparsification"
   },
   {
    "id": "minivite_cpu",
@@ -965,7 +1011,9 @@
     19.3,
     20.1
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "minivite-louvain",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/minivite-louvain"
   },
   {
    "id": "pac2020_nufft_cpu",
@@ -996,7 +1044,9 @@
     62.5,
     51.9
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "nufft-imaging",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/nufft-imaging"
   },
   {
    "id": "pac_tensor_cpu",
@@ -1027,7 +1077,9 @@
     78.5,
     39.9
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "tucker-reconstruction",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/tucker-reconstruction"
   },
   {
    "id": "quest_cpu",
@@ -1058,7 +1110,9 @@
     72.1,
     0.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "quest-circuit-simulation",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/quest-circuit-simulation"
   },
   {
    "id": "asc26_qibotn_cpu",
@@ -1089,7 +1143,9 @@
     99.5,
     99.3
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "qibotn-tensor-network-circuits",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/qibotn-tensor-network-circuits"
   },
   {
    "id": "pac_mqa_cpu",
@@ -1120,7 +1176,9 @@
     91.6,
     90.2
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "paged-lm-generation",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/paged-lm-generation"
   },
   {
    "id": "pac_thundersvm_cpu",
@@ -1151,7 +1209,9 @@
     72.6,
     73.0
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "thundersvm-train-predict",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/thundersvm-train-predict"
   },
   {
    "id": "datalife_cpu",
@@ -1182,7 +1242,9 @@
     77.4,
     80.7
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "datalife-io-monitoring",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/datalife-io-monitoring"
   },
   {
    "id": "io500_cpu",
@@ -1213,7 +1275,9 @@
     3.5,
     null
    ],
-   "stopped_agents": []
+   "stopped_agents": [],
+   "directory": "io500-file-io",
+   "harbor": "https://hub.harborframework.com/tasks/accelerate-bench/io500-file-io"
   }
  ],
  "areas": [
