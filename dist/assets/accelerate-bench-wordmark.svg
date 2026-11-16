@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="112" viewBox="0 0 620 112" role="img" aria-label="Accelerate Bench">
+<rect x="4" y="8" width="96" height="96" rx="23" fill="#172b45"/>
+<g transform="translate(15 19) scale(3.1)" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18 18 5M7 5h11v11"/></g>
+<text x="126" y="76" fill="#172b45" font-family="Manrope, Inter, 'Helvetica Neue', Arial, sans-serif" font-size="58" font-weight="800" letter-spacing="-1.8">Accelerate<tspan dx="16" font-weight="600">Bench</tspan></text>
+</svg>
