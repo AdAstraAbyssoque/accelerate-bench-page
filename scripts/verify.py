@@ -53,12 +53,15 @@ for filename in ['index.html','paper.html']:
  graph=json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>',text,re.S)[1])
  article=next(x for x in graph['@graph'] if x['@type']=='ScholarlyArticle') if '@graph' in graph else graph
  assert [a['name'] for a in article['author']]==[a['name'] for a in data['authors']]
- assert article['creativeWorkStatus']=='Draft'
- assert 'datePublished' not in article and 'doi' not in article
+ assert article['creativeWorkStatus']=='Preprint'
+ assert article['sameAs']=='https://arxiv.org/abs/2611.20882'
+ assert article['identifier']=='arXiv:2611.20882'
+ assert article['datePublished']=='2026-11-16' and 'doi' not in article
  if filename=='paper.html':
   assert parsed.meta['citation_author']==[a['name'] for a in data['authors']]
   assert parsed.meta['citation_pdf_url']==[base+'assets/accelerate-bench.pdf']
-  assert parsed.meta['citation_publication_date']==['2026']
+  assert parsed.meta['citation_publication_date']==['2026/11/16']
+  assert parsed.meta['citation_arxiv_id']==['2611.20882']
   assert article['abstract'] in text
   assert 'src="app.js"' not in text
  else:

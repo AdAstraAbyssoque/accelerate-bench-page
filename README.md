@@ -19,7 +19,7 @@ DeepSeek-V4.1-Flash-1017 identifies the model version evaluated on benchmark v1.
 
 The task illustrations and control layout build on the authors' earlier SciAccel website. The paper/results/findings structure also references ExplorationBench (https://explorationbench.com/). The Tencent Hy wordmark comes from the Hy-MT2 paper source (https://arxiv.org/abs/2605.22064) and remains its owner's mark. Font licenses are supplied in `dist/assets/fonts/`.
 
-The PDF is the benchmark v1.1 preprint prepared for arXiv. The arXiv record will be added after release. No acceptance status or arXiv identifier is implied.
+The benchmark v1.1 preprint is available as [arXiv:2611.20882](https://arxiv.org/abs/2611.20882). The website also serves a PDF copy and the reported results.
 
 ## License
 
