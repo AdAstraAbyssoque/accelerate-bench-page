@@ -228,7 +228,7 @@ for page in pages:
         for qa in schema['mainEntity']:
             assert qa['@type'] == 'Question' and qa['acceptedAnswer']['@type'] == 'Answer'
             pairs.append(dict(question=qa['name'], answer=qa['acceptedAnswer']['text']))
-        assert len(pairs) == 7 and pairs == visible_faq == faq_source
+        assert len(pairs) == 8 and pairs == visible_faq == faq_source
         continue
     task = by_directory[page.parent.name]
     assert page.name == 'index.html' and len(title) <= 60, page
@@ -274,6 +274,6 @@ for page in pages:
             value = 'Stopped by the provider’s safety system (scored as a failure)'
         expected.append([model['name'], value])
     assert actual == expected, page
-print(f'PASS: {len(pages)} HTML pages and their JSON-LD, seven matching FAQ pairs, '
+print(f'PASS: {len(pages)} HTML pages and their JSON-LD, eight matching FAQ pairs, '
       f'32 task parameter sets and 512 ordered rewards. Task title/description maxima '
       f'{longest_title}/{longest_description}. Exact scholarly title preserved ({len(data["title"])} characters).')

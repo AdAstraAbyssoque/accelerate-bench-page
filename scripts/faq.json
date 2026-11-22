@@ -24,7 +24,11 @@
     "answer": "Version 1.1 evaluates 16 coding agents, each a model paired with a harness: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra run in Codex, and the other models run in Claude Code. Claude Sonnet 5.5 with Claude Code scored highest at 67.4%, followed by Claude Opus 5.5 at 59.4%; three Claude Opus 5.5 runs stopped by the provider's safety system count as failures. Each agent ran once per task, so agents a few points apart are not reliably ordered. The full leaderboard is at acceleratebench.com."
   },
   {
+    "question": "Which scientific applications are included?",
+    "answer": "The 32 tasks cover eight areas: molecular simulation and electronic structure (GROMACS, LAMMPS, GPAW, Quantum ESPRESSO, SIESTA); fluids, atmosphere and ocean (Fluidity, ICON, MPAS-A, NEMO, OpenFOAM, Palabos, SU2); transport, plasma and astronomy (OpenMC, ShengBTE, VPIC, PRESTO); bioinformatics and phylogenetics (ABySS, MHM2, MrBayes, wtdbg2); numerics, tensors and graphs (HPCG-derived, HPL-derived, NUFFT imaging, Tucker reconstruction, graph sparsification, miniVite); quantum circuits (QuEST, QiboTN); machine learning (paged LM generation, ThunderSVM); and scientific I/O (DataLife, IO500-derived). Each task has a fixed allocation of 4 or 8 CPU cores."
+  },
+  {
     "question": "How can I run it on my own agent?",
-    "answer": "31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums and is available on request. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands."
+    "answer": "31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums; it asks you to sign in and submit a short access form, and access is granted automatically. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands."
   }
 ]

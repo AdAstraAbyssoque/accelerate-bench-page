@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Accelerate Bench: a long-horizon coding agent benchmark</title>
-<meta name="description" content="Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.">
+<title>Accelerate Bench: a coding agent benchmark for scientific computing</title>
+<meta name="description" content="A long-horizon benchmark: coding agents get up to eight hours to speed up 32 scientific computing applications, with outputs checked on private inputs.">
 <link rel="canonical" href="https://acceleratebench.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Accelerate Bench">
-<meta property="og:title" content="Accelerate Bench: a long-horizon coding agent benchmark">
-<meta property="og:description" content="Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.">
+<meta property="og:title" content="Accelerate Bench: a coding agent benchmark for scientific computing">
+<meta property="og:description" content="A long-horizon benchmark: coding agents get up to eight hours to speed up 32 scientific computing applications, with outputs checked on private inputs.">
 <meta property="og:url" content="https://acceleratebench.com/">
 <meta property="og:image" content="https://acceleratebench.com/assets/fig01_overview.png">
 <meta property="og:image:width" content="2000">
 <meta property="og:image:height" content="1104">
 <meta property="og:image:alt" content="Application-level performance engineering in Accelerate Bench">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Accelerate Bench: a long-horizon coding agent benchmark">
-<meta name="twitter:description" content="Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.">
+<meta name="twitter:title" content="Accelerate Bench: a coding agent benchmark for scientific computing">
+<meta name="twitter:description" content="A long-horizon benchmark: coding agents get up to eight hours to speed up 32 scientific computing applications, with outputs checked on private inputs.">
 <meta name="twitter:image" content="https://acceleratebench.com/assets/fig01_overview.png">
 <meta name="twitter:image:alt" content="Application-level performance engineering in Accelerate Bench">
 <meta name="theme-color" content="#f8fafb">
@@ -38,8 +38,8 @@
       "@type": "WebPage",
       "@id": "https://acceleratebench.com/#webpage",
       "url": "https://acceleratebench.com/",
-      "name": "Accelerate Bench: a long-horizon coding agent benchmark",
-      "description": "Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.",
+      "name": "Accelerate Bench: a coding agent benchmark for scientific computing",
+      "description": "A long-horizon benchmark: coding agents get up to eight hours to speed up 32 scientific computing applications, with outputs checked on private inputs.",
       "isPartOf": {
         "@id": "https://acceleratebench.com/#website"
       },
@@ -57,7 +57,7 @@
       "url": "https://acceleratebench.com/paper.html",
       "headline": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
       "name": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
-      "description": "Accelerate Bench is a long-horizon coding agent benchmark in which agents have up to eight hours to make a scientific application faster while keeping its outputs correct.",
+      "description": "Accelerate Bench is a long-horizon coding agent benchmark in which agents have up to eight hours to make a scientific computing application faster while keeping its outputs correct.",
       "author": [
         {
           "@type": "Person",
@@ -117,7 +117,7 @@
       "@id": "https://acceleratebench.com/#dataset",
       "name": "Accelerate Bench",
       "alternateName": "AccelerateBench",
-      "description": "Accelerate Bench has 32 CPU tasks adapted from scientific applications and six supercomputing competitions. Each gives a coding agent a working program, a fixed workload and rules on what it may change. Within an eight-hour budget, the agent can measure where time goes, change code, build or runtime settings, and test candidates with public tests. A hidden verifier then checks the final program on private inputs and times the end-to-end workflow. On version 1.1, most programs from 16 coding agents stayed correct; what separated the agents was how much faster they made the applications.",
+      "description": "Accelerate Bench has 32 CPU tasks from scientific computing, adapted from applications such as GROMACS, LAMMPS, Quantum ESPRESSO, OpenFOAM and the ICON weather and climate model, and from six supercomputing competitions. They span eight areas, including molecular simulation, atmosphere and ocean modeling, bioinformatics and quantum circuits. Each gives a coding agent a working program, a fixed workload and rules on what it may change. Within an eight-hour budget, the agent can measure where time goes, change code, build or runtime settings, and test candidates with public tests. A hidden verifier then checks the final program on private inputs and times the end-to-end workflow. On version 1.1, most programs from 16 coding agents stayed correct; what separated the agents was how much faster they made the applications.",
       "url": "https://acceleratebench.com/",
       "sameAs": [
         "https://github.com/AdAstraAbyssoque/accelerate-bench",
@@ -182,7 +182,7 @@
           "url": "https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench",
           "contentUrl": "https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench/resolve/9b7825dbee991573edbc290f6effaffbffff8d7e/accelerate-bench-v1.1-harbor-tasks.tar.gz",
           "encodingFormat": "application/gzip",
-          "description": "The full archive requires approved evaluation access on Hugging Face."
+          "description": "The full archive is available on Hugging Face after you sign in and submit the access form; access is granted automatically."
         },
         {
           "@type": "DataDownload",
@@ -251,10 +251,18 @@
     },
     {
       "@type": "Question",
+      "name": "Which scientific applications are included?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The 32 tasks cover eight areas: molecular simulation and electronic structure (GROMACS, LAMMPS, GPAW, Quantum ESPRESSO, SIESTA); fluids, atmosphere and ocean (Fluidity, ICON, MPAS-A, NEMO, OpenFOAM, Palabos, SU2); transport, plasma and astronomy (OpenMC, ShengBTE, VPIC, PRESTO); bioinformatics and phylogenetics (ABySS, MHM2, MrBayes, wtdbg2); numerics, tensors and graphs (HPCG-derived, HPL-derived, NUFFT imaging, Tucker reconstruction, graph sparsification, miniVite); quantum circuits (QuEST, QiboTN); machine learning (paged LM generation, ThunderSVM); and scientific I/O (DataLife, IO500-derived). Each task has a fixed allocation of 4 or 8 CPU cores."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "How can I run it on my own agent?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums and is available on request. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands."
+        "text": "31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums; it asks you to sign in and submit a short access form, and access is granted automatically. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands."
       }
     }
   ]
@@ -334,7 +342,7 @@
 export ANTHROPIC_API_KEY=...
 harbor run -d accelerate-bench/accelerate-bench@v1.1 \
   -a claude-code -m anthropic/MODEL_ID \
-  --ak reasoning_effort=high -n 1</code></pre><p class="step-note"><code>-n 1</code> runs one task at a time, since each task takes 4 or 8 CPUs and up to 32 GiB of memory. Add <code>-i hpcg-multigrid-pcg</code> to run a single task. ICON is left out because its grid files must be downloaded from their official source.</p><a class="button" href="https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench">Open on Harbor Hub <span aria-hidden="true">↗</span></a></div></li><li><div class="step-copy"><span>02</span><h3>Get all 32 tasks</h3><p>Request access on Hugging Face; approval is manual. The script checks every file against the release manifest before installing <code>canonical/tasks/</code>.</p></div><div class="step-body"><pre class="step-code"><code>git clone https://github.com/AdAstraAbyssoque/accelerate-bench
+  --ak reasoning_effort=high -n 1</code></pre><p class="step-note"><code>-n 1</code> runs one task at a time, since each task takes 4 or 8 CPUs and up to 32 GiB of memory. Add <code>-i hpcg-multigrid-pcg</code> to run a single task. ICON is left out because its grid files must be downloaded from their official source.</p><a class="button" href="https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench">Open on Harbor Hub <span aria-hidden="true">↗</span></a></div></li><li><div class="step-copy"><span>02</span><h3>Get all 32 tasks</h3><p>Request access on Hugging Face; access is granted automatically once you submit the form. The script checks every file against the release manifest before installing <code>canonical/tasks/</code>.</p></div><div class="step-body"><pre class="step-code"><code>git clone https://github.com/AdAstraAbyssoque/accelerate-bench
 cd accelerate-bench
 pip install -r requirements-download.txt
 hf auth login
@@ -364,7 +372,8 @@ python scripts/download_data.py</code></pre><p class="step-note">ICON’s two gr
 <li><div class="step-copy"><h3>How does it check that a faster program still gives the right answer?</h3></div><div class="step-body"><p>During the run, a public test rebuilds the program, runs it on a few public inputs (typically two) and reports correctness and runtime. After the run, a hidden verifier rebuilds the submitted files and runs them on private inputs (typically four), which are often larger or freshly randomized. A program that skips a required output or recovery step fails instead of earning a speedup.</p></div></li>
 <li><div class="step-copy"><h3>What does Score@1 mean, and does it include compile time?</h3></div><div class="step-body"><p>A task&#39;s reward is the fraction of baseline runtime the final program saves: a correct 2× speedup earns 0.5, and an incorrect program or one without a valid runtime earns zero. Score@1 averages this reward over the 32 tasks, with one scored run per task. Timing follows each task&#39;s workflow and excludes one-time setup and build steps; build time is reported separately.</p></div></li>
 <li><div class="step-copy"><h3>Which agents have been evaluated, and which scored highest?</h3></div><div class="step-body"><p>Version 1.1 evaluates 16 coding agents, each a model paired with a harness: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra run in Codex, and the other models run in Claude Code. Claude Sonnet 5.5 with Claude Code scored highest at 67.4%, followed by Claude Opus 5.5 at 59.4%; three Claude Opus 5.5 runs stopped by the provider&#39;s safety system count as failures. Each agent ran once per task, so agents a few points apart are not reliably ordered. The full leaderboard is at acceleratebench.com.</p></div></li>
-<li><div class="step-copy"><h3>How can I run it on my own agent?</h3></div><div class="step-body"><p>31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums and is available on request. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands.</p></div></li>
+<li><div class="step-copy"><h3>Which scientific applications are included?</h3></div><div class="step-body"><p>The 32 tasks cover eight areas: molecular simulation and electronic structure (GROMACS, LAMMPS, GPAW, Quantum ESPRESSO, SIESTA); fluids, atmosphere and ocean (Fluidity, ICON, MPAS-A, NEMO, OpenFOAM, Palabos, SU2); transport, plasma and astronomy (OpenMC, ShengBTE, VPIC, PRESTO); bioinformatics and phylogenetics (ABySS, MHM2, MrBayes, wtdbg2); numerics, tensors and graphs (HPCG-derived, HPL-derived, NUFFT imaging, Tucker reconstruction, graph sparsification, miniVite); quantum circuits (QuEST, QiboTN); machine learning (paged LM generation, ThunderSVM); and scientific I/O (DataLife, IO500-derived). Each task has a fixed allocation of 4 or 8 CPU cores.</p></div></li>
+<li><div class="step-copy"><h3>How can I run it on my own agent?</h3></div><div class="step-body"><p>31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums; it asks you to sign in and submit a short access form, and access is granted automatically. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands.</p></div></li>
 </ol></section>
 </main><footer><div><img class="hy-logo" src="assets/hy-logo.png" alt="Tencent Hy"><p>Tencent Hy Team · HKUST · HKUST(GZ) · THU · PKU</p></div><div><a href="#leaderboard">Results</a><a href="#tasks">Tasks</a><a href="#get-started">Get started</a><a href="#paper">Citation</a><a href="https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench">Harbor Hub ↗</a><a href="https://github.com/AdAstraAbyssoque/accelerate-bench-page">Website source ↗</a></div><p class="small">© 2026 Accelerate Bench authors</p></footer>
 <dialog id="task-dialog" aria-labelledby="task-title"><button class="close" aria-label="Close task details">×</button><div id="task-details"></div></dialog><dialog id="figure-dialog" aria-labelledby="figure-caption"><button class="close" aria-label="Close figure">×</button><img id="expanded-figure" alt=""><p id="figure-caption"></p></dialog>
