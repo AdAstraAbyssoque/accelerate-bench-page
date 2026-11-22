@@ -4,7 +4,9 @@ export function taskPage(task, models, copy, site) {
   const entry = copy.tasks[task.directory];
   const {templates, labels} = copy;
   const title = templates.title.replace('{name}', task.name);
-  const description = templates.description.replace('{summary}', entry.summary);
+  const fullDescription = templates.description.replace('{summary}', entry.summary);
+  const description = fullDescription.length <= 160
+    ? fullDescription : templates.descriptionShort.replace('{summary}', entry.summary);
   const subtitle = templates.subtitle.replace('{area}', task.area);
   const url = site + taskPath(task);
   const schema = {

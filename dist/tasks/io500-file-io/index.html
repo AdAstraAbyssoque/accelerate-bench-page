@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IO500-derived task | Accelerate Bench</title>
-<meta name="description" content="The IO500-derived task exercises parallel file I/O and filesystem metadata operations. Workload, checks and agent results.">
+<title>IO500-derived optimization task | Accelerate Bench</title>
+<meta name="description" content="The IO500-derived task exercises parallel file I/O and filesystem metadata operations. Results of 16 coding agents, with the workload and correctness checks.">
 <link rel="canonical" href="https://acceleratebench.com/tasks/io500-file-io/">
 <link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages">
 <script type="application/ld+json">
@@ -13,8 +13,8 @@
       "@type": "WebPage",
       "@id": "https://acceleratebench.com/tasks/io500-file-io/",
       "url": "https://acceleratebench.com/tasks/io500-file-io/",
-      "name": "IO500-derived task | Accelerate Bench",
-      "description": "The IO500-derived task exercises parallel file I/O and filesystem metadata operations. Workload, checks and agent results.",
+      "name": "IO500-derived optimization task | Accelerate Bench",
+      "description": "The IO500-derived task exercises parallel file I/O and filesystem metadata operations. Results of 16 coding agents, with the workload and correctness checks.",
       "isPartOf": {
         "@id": "https://acceleratebench.com/#website"
       },
@@ -53,7 +53,7 @@
 <div id="parameters"><div class="task-meta"><span>Task version<strong>12.1.0</strong></span><span>CPU budget<strong>4 CPUs</strong></span><span>Memory<strong>6 GiB</strong></span><span>Agent budget<strong>8 hours</strong></span><span>Harbor Hub<strong><a href="https://hub.harborframework.com/tasks/accelerate-bench/io500-file-io">Open task ↗</a></strong></span></div></div>
 <div class="task-contract"><div><h2>Workload</h2><p>The MPI workload runs the prescribed IOR reads and writes, metadata creation, lookup and deletion, and parallel file search.</p></div>
 <div><h2>Correctness</h2><p>The verifier checks file data, metadata operations and the required retention and deletion of files.</p></div>
-<div><h2>Timing</h2><p>Timing covers the entire MPI run, including the same system-call tracing overhead for both builds.</p></div></div>
+<div><h2>Timing</h2><p>Timing covers the entire MPI run. The baseline and the submission run under the same system-call tracing.</p></div></div>
 <section id="task-results"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody><tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>41.9%</td></tr>
 <tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5</span></span></td><td>44.2%</td></tr>
 <tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>6.4%</td></tr>
