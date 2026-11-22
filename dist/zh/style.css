@@ -1,0 +1,29 @@
+main {
+  width: min(100% - 40px, 880px);
+  margin: 0 auto;
+  font: 16px/1.85 var(--sans);
+}
+main section { padding: 38px 0; border-bottom: 1px solid var(--line); }
+main section:last-child { border-bottom: 0; padding-bottom: 64px; }
+main h1 { max-width: 21em; font-size: clamp(28px, 3.75vw, 48px); line-height: 1.26; letter-spacing: -.035em; margin: 0 0 24px; text-wrap: balance; }
+main h2 { font-size: clamp(22px, 2.5vw, 30px); letter-spacing: -.025em; }
+main h3 { letter-spacing: 0; }
+main p { margin-bottom: .9em; }
+.zh-intro { padding-top: clamp(32px, 5vw, 68px); }
+.zh-summary { font-size: 1.18em; font-weight: 600; }
+.actions { margin-bottom: 0; }
+.zh-findings { margin: 0; padding-left: 1.25em; }
+.zh-findings li + li, #faq-entries li + li { margin-top: 1em; }
+#faq-entries, #zh-tasks ul { list-style: none; padding: 0; margin: 0; }
+#faq-entries h3 { margin: 0 0 .35em; }
+#faq-entries li + li { border-top: 1px solid var(--line); padding-top: 1em; }
+#rank-note { color: #53667a; font-size: 13px; line-height: 1.8; margin-top: 12px; }
+#zh-tasks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px 40px; }
+#zh-tasks h3 { border-bottom: 1px solid var(--line); margin: 0 0 8px; padding-bottom: 5px; }
+#zh-tasks ul { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+#zh-tasks a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 520px) {
+  main { font-size: 15px; }
+  main section { padding-block: 26px; }
+  .table-scroll th, .table-scroll td { font-size: 11px; }
+}

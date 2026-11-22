@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accelerate Bench：面向科学计算的长时程编程智能体评测基准</title><meta name="description" content="每个任务给编程智能体最多 8 小时，让 GROMACS、LAMMPS、OpenFOAM 等 32 个科学计算应用跑得更快，并在私有输入上检查结果是否正确。">
+<link rel="canonical" href="https://acceleratebench.com/zh/">
+<link rel="alternate" hreflang="en" href="https://acceleratebench.com/">
+<link rel="alternate" hreflang="zh-CN" href="https://acceleratebench.com/zh/">
+<link rel="alternate" hreflang="x-default" href="https://acceleratebench.com/">
+<link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages"><link rel="stylesheet" href="/zh/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://acceleratebench.com/zh/",
+      "url": "https://acceleratebench.com/zh/",
+      "name": "Accelerate Bench：面向科学计算的长时程编程智能体评测基准",
+      "description": "每个任务给编程智能体最多 8 小时，让 GROMACS、LAMMPS、OpenFOAM 等 32 个科学计算应用跑得更快，并在私有输入上检查结果是否正确。",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://acceleratebench.com/#website"
+      },
+      "about": {
+        "@id": "https://acceleratebench.com/#dataset"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://acceleratebench.com/zh/#faq",
+      "inLanguage": "zh-CN",
+      "isPartOf": {
+        "@id": "https://acceleratebench.com/zh/"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Accelerate Bench 评测什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "评测编程智能体能把一个已经能运行的应用提速多少，同时输出保持正确。每个任务固定了计算内容、负载、检查方式和计时范围，改哪里、怎么改由智能体决定。每个任务的得分是节省下来的基线运行时间比例，结果错误记零分。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "它和 SWE-bench 有什么不同？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SWE-bench 让智能体解决真实的 GitHub issue，以仓库测试是否通过来判定。Accelerate Bench 从已经能正确运行的程序出发：正确是前提，得分看整个流程快了多少。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "它算长时程（long-horizon）评测吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "算。每次运行，智能体最多有 8 小时检查、修改、构建和测试程序，也可以提前提交。论文把它和 RE-Bench 等预算相近的长时程评测放在一起比较。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "程序变快以后，怎么保证结果还对？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "运行期间，公开测试会重新构建程序，在少量公开输入（通常两个）上运行，并报告是否正确和耗时。运行结束后，隐藏的验证器重新构建提交的文件，在私有输入（通常四个，常常更大或每次随机生成）上运行检查。跳过必需输出或恢复步骤的程序会被判为错误，不会因此得到加速分。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Score@1 怎么算？包括编译时间吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "每个任务的得分是最终程序节省的基线运行时间比例：结果正确且快 2 倍得 0.5 分，结果错误或没有有效耗时得 0 分。Score@1 是 32 个任务上这一得分的平均，每个任务取一次计分运行。计时按各任务规定的流程进行，不含一次性准备和构建；构建时间单独报告。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "评测了哪些智能体？谁得分最高？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1.1 版评测了 16 个编程智能体，每个都是模型加运行框架的组合：GPT-6 Astra、GPT-6.1 Sol 和 GPT-6.1 Terra 使用 Codex，其余模型使用 Claude Code。使用 Claude Code 的 Claude Sonnet 5.5 得分最高，为 67.4%；其次是 Claude Opus 5.5，为 59.4%，它有 3 次运行被模型提供方的安全系统中止，按失败计。每个智能体在每个任务上只跑一次，分数相差几个点的智能体不能据此排序。完整排行榜见 acceleratebench.com。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "包含哪些科学计算应用？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "32 个任务分属 8 个领域：分子模拟与电子结构（GROMACS、LAMMPS、GPAW、Quantum ESPRESSO、SIESTA）；流体、大气与海洋（Fluidity、ICON、MPAS-A、NEMO、OpenFOAM、Palabos、SU2）；输运、等离子体与天文（OpenMC、ShengBTE、VPIC、PRESTO）；生物信息与系统发育（ABySS、MHM2、MrBayes、wtdbg2）；数值计算、张量与图（HPCG 衍生、HPL 衍生、NUFFT 成像、Tucker 重构、图稀疏化、miniVite）；量子线路（QuEST、QiboTN）；机器学习（分页 LM 生成、ThunderSVM）；科学 I/O（DataLife、IO500 衍生）。每个任务固定分配 4 或 8 个 CPU 核。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "怎么在自己的智能体上跑？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "32 个任务中有 31 个公开在 Harbor Hub 上，一条命令即可运行，无需申请。Hugging Face 上的完整版本额外包含 ICON 任务和每个文件的校验和，需登录并填写一份简短的访问表单，提交后自动开通。两者都需要 Linux x86-64 主机上的 Docker，具体命令见官网和 GitHub 说明。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script></head><body>
+<header><div class="header-inner"><a class="wordmark" href="#top"><img src="/assets/favicon.svg" width="29" height="29" alt=""><span>Accelerate<span class="brand-light"> Bench</span></span></a>
+<nav><a href="#faq">常见问题</a><a href="#leaderboard">排行榜</a><a href="#tasks">任务列表</a></nav>
+<a class="header-paper" href="/" hreflang="en" lang="en">English</a></div></header>
+<main id="top">
+<section class="zh-intro"><h1>Accelerate Bench：面向科学计算的长时程编程智能体评测基准</h1>
+<p class="zh-summary">Accelerate Bench 是一个面向科学计算的长时程编程智能体（Coding Agent）评测基准：每个任务给智能体最多 8 小时，让 GROMACS、LAMMPS、OpenFOAM 这类科学计算应用跑得更快，同时输出必须保持正确。</p>
+<p>Accelerate Bench 包含 32 个科学计算方向的 CPU 优化任务，改编自 GROMACS、LAMMPS、Quantum ESPRESSO、OpenFOAM 和 ICON 天气气候模式等应用以及六项超算竞赛，覆盖分子模拟、大气与海洋模拟、生物信息、量子线路等 8 个领域。每个任务给编程智能体一份能正常运行的程序、一个固定的计算负载，以及允许修改的范围。在最长 8 小时的预算内，智能体可以测量时间花在哪里，修改代码、编译或运行设置，并用公开测试检验候选版本。运行结束后，隐藏的验证器在私有输入上检查最终程序，并对端到端流程计时。在 1.1 版上，16 个编程智能体的大多数程序都保持了正确，拉开差距的是它们把应用提速了多少。</p><div class="actions"><a class="button" href="/paper.html">论文</a>
+<a class="button" href="https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench">Harbor Hub</a>
+<a class="button" href="https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench">Hugging Face</a>
+<a class="button" href="https://github.com/AdAstraAbyssoque/accelerate-bench">GitHub</a></div></section>
+<section id="findings"><h2>关键发现</h2><ul class="zh-findings"><li><strong>只看正确性分不出高下，提速幅度才分得出。</strong> 在 1.1 版上，16 个智能体在 32 个任务中各做对 26 到 32 个，Score@1 却从 25.5% 到 67.4% 不等。使用 Codex 的 GPT-6.1 Terra 32 个任务全部正确，得分 37.9%；使用 Claude Code 的 Kimi K3 做对 28 个，得分 42.5%。（§4，表 1）</li>
+<li><strong>领先的两个智能体更常拿到大幅提速。</strong> 使用 Claude Code 的 Claude Sonnet 5.5 和 Claude Opus 5.5 在 32 个任务中的 22 个以上提速至少 2 倍；其余 14 个智能体只在 8 到 17 个任务上做到，而且它们 412 个正确结果中有 125 个提速不到 1.25 倍。（1.1 版；§4，图 3）</li>
+<li><strong>编译和运行设置能让速度相差数倍，但被分析的智能体很少去调。</strong> 在 1.0 版 5 个智能体的 476 次已标注运行中，225 次改动了计算的实现方式（包括复用已算出的结果），出现编译和构建调优的只有 40 次。而同一份 GROMACS 源码只换编译和运行设置重放，四种组合结果都正确，速度是固定参照的 0.29 倍到 2.12 倍。（1.0 版分析；§5，附录 L.1）</li>
+<li><strong>一个代码改动值多少，取决于其他改动。</strong> 在一个 QiboTN 程序中，单独推迟加载张量库只带来 1.01 倍的提速；另一项改动让更多量子电路交给快速精确模拟器之后，同一改动带来 6.3–6.4 倍的提速。（1.0 版分析；§5，附录 L.2）</li></ul></section>
+<section id="related"><h2>与相近基准的关系</h2>
+<p>SWE-Perf、GSO 和 SWE-fficiency 在真实代码仓库中评测性能优化，任务来自人类提交的优化 commit 或 PR，因此每个任务都对应一个已知的优化和专家参考。Accelerate Bench 研究一个互补的问题：任务只规定要保留的计算和要加速的负载，没有现成补丁告诉智能体该改哪里、怎么改。和 SWE-fficiency 一样，智能体要先找出时间花在哪里，然后可以修改算法、实现、编译设置和运行配置。</p>
+<p>KernelBench 和 AlgoTune 衡量单个函数或算子相对参考实现的加速；Accelerate Bench 对完整的应用流程计时。</p>
+<p>在长时程智能体评测中，RE-Bench 的形式最接近：智能体同样从可运行的初始方案出发，预算最长 8 小时。RE-Bench 把分数归一化到初始方案和专家方案之间；Accelerate Bench 报告相对基线程序的运行时间，并在私有输入上验证最终程序。</p></section>
+<section id="faq"><h2>常见问题</h2><ol id="faq-entries"><li><h3>Accelerate Bench 评测什么？</h3><p>评测编程智能体能把一个已经能运行的应用提速多少，同时输出保持正确。每个任务固定了计算内容、负载、检查方式和计时范围，改哪里、怎么改由智能体决定。每个任务的得分是节省下来的基线运行时间比例，结果错误记零分。</p></li>
+<li><h3>它和 SWE-bench 有什么不同？</h3><p>SWE-bench 让智能体解决真实的 GitHub issue，以仓库测试是否通过来判定。Accelerate Bench 从已经能正确运行的程序出发：正确是前提，得分看整个流程快了多少。</p></li>
+<li><h3>它算长时程（long-horizon）评测吗？</h3><p>算。每次运行，智能体最多有 8 小时检查、修改、构建和测试程序，也可以提前提交。论文把它和 RE-Bench 等预算相近的长时程评测放在一起比较。</p></li>
+<li><h3>程序变快以后，怎么保证结果还对？</h3><p>运行期间，公开测试会重新构建程序，在少量公开输入（通常两个）上运行，并报告是否正确和耗时。运行结束后，隐藏的验证器重新构建提交的文件，在私有输入（通常四个，常常更大或每次随机生成）上运行检查。跳过必需输出或恢复步骤的程序会被判为错误，不会因此得到加速分。</p></li>
+<li><h3>Score@1 怎么算？包括编译时间吗？</h3><p>每个任务的得分是最终程序节省的基线运行时间比例：结果正确且快 2 倍得 0.5 分，结果错误或没有有效耗时得 0 分。Score@1 是 32 个任务上这一得分的平均，每个任务取一次计分运行。计时按各任务规定的流程进行，不含一次性准备和构建；构建时间单独报告。</p></li>
+<li><h3>评测了哪些智能体？谁得分最高？</h3><p>1.1 版评测了 16 个编程智能体，每个都是模型加运行框架的组合：GPT-6 Astra、GPT-6.1 Sol 和 GPT-6.1 Terra 使用 Codex，其余模型使用 Claude Code。使用 Claude Code 的 Claude Sonnet 5.5 得分最高，为 67.4%；其次是 Claude Opus 5.5，为 59.4%，它有 3 次运行被模型提供方的安全系统中止，按失败计。每个智能体在每个任务上只跑一次，分数相差几个点的智能体不能据此排序。完整排行榜见 acceleratebench.com。</p></li>
+<li><h3>包含哪些科学计算应用？</h3><p>32 个任务分属 8 个领域：分子模拟与电子结构（GROMACS、LAMMPS、GPAW、Quantum ESPRESSO、SIESTA）；流体、大气与海洋（Fluidity、ICON、MPAS-A、NEMO、OpenFOAM、Palabos、SU2）；输运、等离子体与天文（OpenMC、ShengBTE、VPIC、PRESTO）；生物信息与系统发育（ABySS、MHM2、MrBayes、wtdbg2）；数值计算、张量与图（HPCG 衍生、HPL 衍生、NUFFT 成像、Tucker 重构、图稀疏化、miniVite）；量子线路（QuEST、QiboTN）；机器学习（分页 LM 生成、ThunderSVM）；科学 I/O（DataLife、IO500 衍生）。每个任务固定分配 4 或 8 个 CPU 核。</p></li>
+<li><h3>怎么在自己的智能体上跑？</h3><p>32 个任务中有 31 个公开在 Harbor Hub 上，一条命令即可运行，无需申请。Hugging Face 上的完整版本额外包含 ICON 任务和每个文件的校验和，需登录并填写一份简短的访问表单，提交后自动开通。两者都需要 Linux x86-64 主机上的 Docker，具体命令见官网和 GitHub 说明。</p></li></ol></section>
+<section id="leaderboard" aria-labelledby="rank-title"><h2 id="rank-title">排行榜</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-labelledby="rank-title"><table aria-labelledby="rank-title" aria-describedby="rank-note">
+<thead><tr><th scope="col">#</th><th scope="col">模型</th><th scope="col">运行框架</th><th scope="col">Score@1</th><th scope="col">GM</th><th scope="col">A₁.₂₅</th><th scope="col">A₂</th></tr></thead>
+<tbody id="rank-rows"><tr><td>01</td><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:67.4%"><strong>67.4%</strong></span></td><td>3.83×</td><td>100.0%</td><td>71.9%</td></tr>
+<tr><td>02</td><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5<sup class="model-mark" title="模型提供方的安全系统中止了 Claude Opus 5.5 在 Graph sparsification、PRESTO、VPIC 上的运行，这些运行均按失败计，奖励为零。该智能体在其余 29 个任务上的得分为 65.6%。">†</sup></span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:59.4%"><strong>59.4%</strong></span></td><td>3.94×</td><td>84.4%</td><td>68.8%</td></tr>
+<tr><td>03</td><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>Codex</td><td><span class="score-cell" style="--fill:49.2%"><strong>49.2%</strong></span></td><td>2.42×</td><td>78.1%</td><td>50.0%</td></tr>
+<tr><td>04</td><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6 Astra</span></span></td><td>Codex</td><td><span class="score-cell" style="--fill:47.2%"><strong>47.2%</strong></span></td><td>2.40×</td><td>75.0%</td><td>53.1%</td></tr>
+<tr><td>05</td><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4-Preview</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:45.2%"><strong>45.2%</strong></span></td><td>2.31×</td><td>71.9%</td><td>50.0%</td></tr>
+<tr><td>06</td><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:45%"><strong>45.0%</strong></span></td><td>2.41×</td><td>75.0%</td><td>46.9%</td></tr>
+<tr><td>07</td><td><span class="model-label"><img class="model-icon" src="/assets/models/kimi.svg" alt="" width="20" height="20"><span>Kimi K3</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:42.5%"><strong>42.5%</strong></span></td><td>2.47×</td><td>68.8%</td><td>40.6%</td></tr>
+<tr><td>08</td><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4.1-Flash-1017</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:40.1%"><strong>40.1%</strong></span></td><td>2.28×</td><td>65.6%</td><td>34.4%</td></tr>
+<tr><td>09</td><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:39.7%"><strong>39.7%</strong></span></td><td>2.20×</td><td>65.6%</td><td>40.6%</td></tr>
+<tr><td>10</td><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3-Flash</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:39.3%"><strong>39.3%</strong></span></td><td>2.20×</td><td>68.8%</td><td>34.4%</td></tr>
+<tr><td>11</td><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Pro</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:37.9%"><strong>37.9%</strong></span></td><td>2.19×</td><td>62.5%</td><td>34.4%</td></tr>
+<tr><td>12</td><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Terra</span></span></td><td>Codex</td><td><span class="score-cell" style="--fill:37.9%"><strong>37.9%</strong></span></td><td>1.92×</td><td>75.0%</td><td>25.0%</td></tr>
+<tr><td>13</td><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Flash</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:34.1%"><strong>34.1%</strong></span></td><td>1.92×</td><td>56.2%</td><td>34.4%</td></tr>
+<tr><td>14</td><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.2</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:34%"><strong>34.0%</strong></span></td><td>1.98×</td><td>46.9%</td><td>37.5%</td></tr>
+<tr><td>15</td><td><span class="model-label"><img class="model-icon" src="/assets/models/grok.svg" alt="" width="20" height="20"><span>Grok 4.6</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:33.9%"><strong>33.9%</strong></span></td><td>2.13×</td><td>50.0%</td><td>34.4%</td></tr>
+<tr><td>16</td><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy3</span></span></td><td>Claude Code</td><td><span class="score-cell" style="--fill:25.5%"><strong>25.5%</strong></span></td><td>1.76×</td><td>37.5%</td><td>28.1%</td></tr></tbody></table></div>
+<p class="caption" id="rank-note">论文表 1 · 基准 v1.1 · 16 个智能体 × 32 个任务，共 512 个结果。每个智能体在每个任务上取首次运行，所有结果均在同一台机器上计分。Score@1 和 A<sub>τ</sub> 用百分比表示，GM 用倍数表示。每个智能体由模型和运行框架组成，均请求高推理强度。结果错误或未提速，节省运行时间的奖励均为零。Gemini-3.8-Flash 的 v1.1 运行尚未完成，未列入表中。 <sup>†</sup>模型提供方的安全系统中止了 Claude Opus 5.5 在 Graph sparsification、PRESTO、VPIC 上的运行，这些运行均按失败计，奖励为零。该智能体在其余 29 个任务上的得分为 65.6%。</p></section>
+<section id="tasks"><h2>任务列表</h2><div id="zh-tasks"><div><h3>分子模拟与电子结构</h3><ul><li><a href="/tasks/gromacs-molecular-dynamics/" lang="en">GROMACS</a></li>
+<li><a href="/tasks/lammps-molecular-dynamics/" lang="en">LAMMPS</a></li>
+<li><a href="/tasks/gpaw-fd-dft-restart/" lang="en">GPAW</a></li>
+<li><a href="/tasks/qe-scf-nscf-dos/" lang="en">Quantum ESPRESSO</a></li>
+<li><a href="/tasks/siesta-dft-restart/" lang="en">SIESTA</a></li></ul></div>
+<div><h3>流体、大气与海洋</h3><ul><li><a href="/tasks/fluidity-heat-checkpoint/" lang="en">Fluidity</a></li>
+<li><a href="/tasks/icon-atmosphere-checkpoint/" lang="en">ICON</a></li>
+<li><a href="/tasks/mpas-atmosphere-restart/" lang="en">MPAS-A</a></li>
+<li><a href="/tasks/nemo-lock-exchange/" lang="en">NEMO</a></li>
+<li><a href="/tasks/openfoam-cavity-piso/" lang="en">OpenFOAM</a></li>
+<li><a href="/tasks/palabos-lattice-boltzmann/" lang="en">Palabos</a></li>
+<li><a href="/tasks/su2-transonic-euler/" lang="en">SU2</a></li></ul></div>
+<div><h3>输运、等离子体与天文</h3><ul><li><a href="/tasks/openmc-multigroup-transport/" lang="en">OpenMC</a></li>
+<li><a href="/tasks/shengbte-phonon-transport/" lang="en">ShengBTE</a></li>
+<li><a href="/tasks/vpic-harris-reconnection/" lang="en">VPIC</a></li>
+<li><a href="/tasks/presto-pulsar-search/" lang="en">PRESTO</a></li></ul></div>
+<div><h3>生物信息与系统发育</h3><ul><li><a href="/tasks/abyss-genome-assembly/" lang="en">ABySS</a></li>
+<li><a href="/tasks/mhm2-metagenome-assembly/" lang="en">MHM2</a></li>
+<li><a href="/tasks/mrbayes-phylogenetics/" lang="en">MrBayes</a></li>
+<li><a href="/tasks/wtdbg2-long-read-assembly/" lang="en">wtdbg2</a></li></ul></div>
+<div><h3>数值计算、张量与图</h3><ul><li><a href="/tasks/hpcg-multigrid-pcg/" lang="en">HPCG-derived</a></li>
+<li><a href="/tasks/hpl-dense-lu/" lang="en">HPL-derived</a></li>
+<li><a href="/tasks/fegrass-graph-sparsification/" lang="en">Graph sparsification</a></li>
+<li><a href="/tasks/minivite-louvain/" lang="en">miniVite</a></li>
+<li><a href="/tasks/nufft-imaging/" lang="en">NUFFT imaging</a></li>
+<li><a href="/tasks/tucker-reconstruction/" lang="en">Tucker reconstruction</a></li></ul></div>
+<div><h3>量子线路</h3><ul><li><a href="/tasks/quest-circuit-simulation/" lang="en">QuEST</a></li>
+<li><a href="/tasks/qibotn-tensor-network-circuits/" lang="en">QiboTN</a></li></ul></div>
+<div><h3>机器学习</h3><ul><li><a href="/tasks/paged-lm-generation/" lang="en">Paged LM generation</a></li>
+<li><a href="/tasks/thundersvm-train-predict/" lang="en">ThunderSVM</a></li></ul></div>
+<div><h3>科学 I/O</h3><ul><li><a href="/tasks/datalife-io-monitoring/" lang="en">DataLife</a></li>
+<li><a href="/tasks/io500-file-io/" lang="en">IO500-derived</a></li></ul></div></div></section>
+</main></body></html>

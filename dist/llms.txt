@@ -1,0 +1,62 @@
+# Accelerate Bench
+
+> Accelerate Bench is a long-horizon coding agent benchmark in which agents have up to eight hours to make a scientific computing application faster while keeping its outputs correct.
+
+Accelerate Bench has 32 CPU tasks from scientific computing, adapted from applications such as GROMACS, LAMMPS, Quantum ESPRESSO, OpenFOAM and the ICON weather and climate model, and from six supercomputing competitions. They span eight areas, including molecular simulation, atmosphere and ocean modeling, bioinformatics and quantum circuits. Each gives a coding agent a working program, a fixed workload and rules on what it may change. Within an eight-hour budget, the agent can measure where time goes, change code, build or runtime settings, and test candidates with public tests. A hidden verifier then checks the final program on private inputs and times the end-to-end workflow. On version 1.1, most programs from 16 coding agents stayed correct; what separated the agents was how much faster they made the applications.
+
+## Paper
+
+- [Accelerate Bench: Evaluating Agents for Application-Level Program Optimization](https://acceleratebench.com/paper.html)
+
+## Leaderboard data
+
+- [results.json](https://acceleratebench.com/assets/results.json)
+
+## Tasks
+
+- [GROMACS](https://acceleratebench.com/tasks/gromacs-molecular-dynamics/)
+- [LAMMPS](https://acceleratebench.com/tasks/lammps-molecular-dynamics/)
+- [GPAW](https://acceleratebench.com/tasks/gpaw-fd-dft-restart/)
+- [Quantum ESPRESSO](https://acceleratebench.com/tasks/qe-scf-nscf-dos/)
+- [SIESTA](https://acceleratebench.com/tasks/siesta-dft-restart/)
+- [Fluidity](https://acceleratebench.com/tasks/fluidity-heat-checkpoint/)
+- [ICON](https://acceleratebench.com/tasks/icon-atmosphere-checkpoint/)
+- [MPAS-A](https://acceleratebench.com/tasks/mpas-atmosphere-restart/)
+- [NEMO](https://acceleratebench.com/tasks/nemo-lock-exchange/)
+- [OpenFOAM](https://acceleratebench.com/tasks/openfoam-cavity-piso/)
+- [Palabos](https://acceleratebench.com/tasks/palabos-lattice-boltzmann/)
+- [SU2](https://acceleratebench.com/tasks/su2-transonic-euler/)
+- [OpenMC](https://acceleratebench.com/tasks/openmc-multigroup-transport/)
+- [ShengBTE](https://acceleratebench.com/tasks/shengbte-phonon-transport/)
+- [VPIC](https://acceleratebench.com/tasks/vpic-harris-reconnection/)
+- [PRESTO](https://acceleratebench.com/tasks/presto-pulsar-search/)
+- [ABySS](https://acceleratebench.com/tasks/abyss-genome-assembly/)
+- [MHM2](https://acceleratebench.com/tasks/mhm2-metagenome-assembly/)
+- [MrBayes](https://acceleratebench.com/tasks/mrbayes-phylogenetics/)
+- [wtdbg2](https://acceleratebench.com/tasks/wtdbg2-long-read-assembly/)
+- [HPCG-derived](https://acceleratebench.com/tasks/hpcg-multigrid-pcg/)
+- [HPL-derived](https://acceleratebench.com/tasks/hpl-dense-lu/)
+- [Graph sparsification](https://acceleratebench.com/tasks/fegrass-graph-sparsification/)
+- [miniVite](https://acceleratebench.com/tasks/minivite-louvain/)
+- [NUFFT imaging](https://acceleratebench.com/tasks/nufft-imaging/)
+- [Tucker reconstruction](https://acceleratebench.com/tasks/tucker-reconstruction/)
+- [QuEST](https://acceleratebench.com/tasks/quest-circuit-simulation/)
+- [QiboTN](https://acceleratebench.com/tasks/qibotn-tensor-network-circuits/)
+- [Paged LM generation](https://acceleratebench.com/tasks/paged-lm-generation/)
+- [ThunderSVM](https://acceleratebench.com/tasks/thundersvm-train-predict/)
+- [DataLife](https://acceleratebench.com/tasks/datalife-io-monitoring/)
+- [IO500-derived](https://acceleratebench.com/tasks/io500-file-io/)
+
+## FAQ
+
+- [FAQ](https://acceleratebench.com/#faq)
+
+## Get started
+
+- [Harbor Hub](https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench)
+- [Hugging Face](https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench)
+- [GitHub](https://github.com/AdAstraAbyssoque/accelerate-bench)
+
+## 中文
+
+- [中文](https://acceleratebench.com/zh/)

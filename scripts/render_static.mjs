@@ -2,11 +2,13 @@
 import assert from 'node:assert/strict';
 import {mkdirSync, readFileSync, writeFileSync} from 'node:fs';
 import {esc, rankRow, taskCard, taskPath} from '../dist/render.mjs';
+import {zhPage, llmsText} from './zh-page.mjs';
 import {taskPage} from './task-page.mjs';
 
 const homepage = new URL('../dist/index.html', import.meta.url);
 const readJson = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
-const {models, tasks} = readJson('../dist/assets/results.json');
+const data = readJson('../dist/assets/results.json');
+const {models, tasks} = data;
 const metadata = readJson('./task-metadata-v11.json');
 assert.deepEqual(tasks.map(task => task.directory).sort(), Object.keys(metadata).sort());
 
@@ -55,9 +57,12 @@ for (const task of tasks) {
   mkdirSync(directory, {recursive: true});
   writeFileSync(new URL('index.html', directory), taskPage(task, models, copy, site));
 }
+mkdirSync(new URL('zh/', dist), {recursive: true});
+writeFileSync(new URL('zh/index.html', dist), zhPage(data, site));
+writeFileSync(new URL('llms.txt', dist), llmsText(data, site));
 const pageDate = '2026-11-23';
 const sitemapEntries = [
-  ['/', pageDate], ['/paper.html', pageDate], ['/assets/accelerate-bench.pdf', '2026-11-16'],
+  ['/', pageDate], ['/zh/', pageDate], ['/paper.html', pageDate], ['/assets/accelerate-bench.pdf', '2026-11-16'],
   ...tasks.map(task => [taskPath(task), pageDate])
 ];
 writeFileSync(new URL('sitemap.xml', dist), [

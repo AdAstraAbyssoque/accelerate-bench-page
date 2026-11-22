@@ -1,7 +1,9 @@
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote, urljoin
+import argparse
 import json,re
+from urllib.robotparser import RobotFileParser
 root=Path(__file__).resolve().parents[1]/'dist'
 data=json.loads((root/'assets/results.json').read_text())
 assert len(data['tasks'])==32 and len(data['models'])==16
@@ -35,6 +37,9 @@ for page in pages:
     links.feed(page.read_text())
     anchors[page] = links.ids
     refs.extend((page_url(page), ref) for ref in links.refs)
+llms = (root/'llms.txt').read_text()
+llms_links = re.findall(r'\[([^\]]+)\]\(([^\s)]+)\)', llms)
+refs.extend((base, url) for _, url in llms_links)
 refs.extend((base, task['diagram']) for task in data['tasks'])
 refs.extend((base, item['diagram']) for item in json.loads((root/'assets/methods.json').read_text()))
 refs.extend((base, path) for path in re.findall(r"""url\(['"]?([^)'" ]+)""", (root/'style.css').read_text()))
@@ -61,17 +66,24 @@ from datetime import date
 class Metadata(HTMLParser):
  def __init__(self):
   super().__init__();self.meta={};self.canonical=[];self.ld_blocks=[];self.in_ld=False;self.titles=[];self.in_title=False
+  self.alternates = []
+  self.header_links = []
+  self.in_header = False
  def handle_starttag(self,tag,attrs):
   attrs=dict(attrs)
+  if tag=='header': self.in_header=True
+  if self.in_header and tag=='a': self.header_links.append(attrs)
   if tag=='title':self.in_title=True;self.titles.append('')
   if tag=='script' and attrs.get('type')=='application/ld+json':
    self.in_ld=True;self.ld_blocks.append('')
   if tag=='meta':self.meta.setdefault(attrs.get('name',attrs.get('property')),[]).append(attrs.get('content'))
+  if tag=='link' and attrs.get('rel')=='alternate':self.alternates.append((attrs.get('hreflang'),attrs.get('href')))
   if tag=='link' and attrs.get('rel')=='canonical':self.canonical.append(attrs['href'])
  def handle_data(self,text):
   if self.in_ld:self.ld_blocks[-1]+=text
   if self.in_title:self.titles[-1]+=text
  def handle_endtag(self,tag):
+  if tag=='header': self.in_header=False
   if tag=='script':self.in_ld=False
   if tag=='title':self.in_title=False
 for filename in ['index.html','paper.html']:
@@ -165,14 +177,18 @@ static.close()
 assert not static.stack
 rows = static.elements['rank-rows']
 models = sorted(data['models'], key=lambda model: -model['score'])
-assert len(rows) == len(models)
-for index, (row, model) in enumerate(zip(rows, models), 1):
-    expected = [
-        f'{index:02}', model['name'] + ('†' if model['stopped_tasks'] else ''),
-        model['harness'], f"{model['score']:.1f}%", f"{model['gm']:.2f}×",
-        f"{model['a125']:.1f}%", f"{model['a2']:.1f}%"
-    ]
-    assert row.tag == 'tr' and [visible(td) for td in row.findall('td')] == expected, model['name']
+
+def verify_rows(rows):
+    assert len(rows) == len(models)
+    for index, (row, model) in enumerate(zip(rows, models), 1):
+        expected = [
+            f'{index:02}', model['name'] + ('†' if model['stopped_tasks'] else ''),
+            model['harness'], f"{model['score']:.1f}%", f"{model['gm']:.2f}×",
+            f"{model['a125']:.1f}%", f"{model['a2']:.1f}%"
+        ]
+        assert row.tag == 'tr' and [visible(td) for td in row.findall('td')] == expected, model['name']
+
+verify_rows(rows)
 
 cards = static.elements['task-grid']
 metadata = json.loads((root.parent/'scripts/task-metadata-v11.json').read_text())
@@ -194,8 +210,9 @@ print('PASS: 16 static seven-column leaderboard rows, 32 task cards, Dataset JSO
 faq_source = json.loads((root.parent/'scripts/faq.json').read_text())
 copy = json.loads((root.parent/'scripts/task-pages-copy.json').read_text())
 by_directory = {t['directory']: t for t in data['tasks']}
-assert {page.parent.name for page in pages if page.parent != root} == set(by_directory)
-assert len(pages) == len(by_directory) + 2
+zh_page = root/'zh/index.html'
+assert set(pages) == {root/'index.html', root/'paper.html', zh_page} | {
+    root/'tasks'/directory/'index.html' for directory in by_directory}
 longest_title = longest_description = 0
 for page in pages:
     html = page.read_text()
@@ -229,6 +246,8 @@ for page in pages:
             assert qa['@type'] == 'Question' and qa['acceptedAnswer']['@type'] == 'Answer'
             pairs.append(dict(question=qa['name'], answer=qa['acceptedAnswer']['text']))
         assert len(pairs) == 8 and pairs == visible_faq == faq_source
+        continue
+    if page == zh_page:
         continue
     task = by_directory[page.parent.name]
     assert page.name == 'index.html' and len(title) <= 60, page
@@ -277,3 +296,97 @@ for page in pages:
 print(f'PASS: {len(pages)} HTML pages and their JSON-LD, eight matching FAQ pairs, '
       f'32 task parameter sets and 512 ordered rewards. Task title/description maxima '
       f'{longest_title}/{longest_description}. Exact scholarly title preserved ({len(data["title"])} characters).')
+
+# With --messaging, check a coordinator's current master copy as well as the
+# build input in this checkout. Pages CI needs only the latter.
+parser = argparse.ArgumentParser()
+parser.add_argument('--messaging', type=Path, help='also compare to an upstream messaging.md')
+args = parser.parse_args()
+sources = [(root.parent/'scripts/messaging.md').read_text()]
+if args.messaging:
+    sources.append(args.messaging.read_text())
+
+zh_html = zh_page.read_text()
+meta = Metadata()
+meta.feed(zh_html)
+alternates = sorted([('en', base), ('zh-CN', base+'zh/'), ('x-default', base)])
+for page, lang, dest in [(root/'index.html', 'zh-CN', '/zh/'), (zh_page, 'en', '/')]:
+    head = Metadata()
+    head.feed(page.read_text())
+    assert sorted(head.alternates) == alternates, page
+    assert any(a.get('href') == dest and a.get('hreflang') == lang for a in head.header_links)
+
+class ChineseContent(StaticContainers):
+    ids = {'top'}
+
+content = ChineseContent()
+content.feed(zh_html)
+main = content.elements['top']
+assert not content.stack
+webpage, faq = json.loads(meta.ld_blocks[0])['@graph']
+assert webpage['@type'] == 'WebPage' and webpage['inLanguage'] == 'zh-CN'
+assert webpage['about']['@id'] == base + '#dataset' and webpage['url'] == base + 'zh/'
+assert faq['@type'] == 'FAQPage' and faq['@id'] == base + 'zh/#faq'
+entities = faq['mainEntity']
+assert all(q['@type']=='Question' and q['acceptedAnswer']['@type']=='Answer' for q in entities)
+visible_pairs = [(visible(li.find('h3')), visible(li.find('p')))
+                 for li in main.findall(".//ol[@id='faq-entries']/li")]
+structured_pairs = [(q['name'], q['acceptedAnswer']['text']) for q in entities]
+assert len(entities) == 8 and structured_pairs == visible_pairs
+
+def prose_section(source, language, heading):
+    language_part = re.split(r'^## ', source, flags=re.M)
+    one, = [part for part in language_part if part.startswith(language+'\n')]
+    sections = re.split(r'^### ', one, flags=re.M)
+    section, = [s for s in sections if s.startswith(heading+'\n')]
+    return section.split('\n', 1)[1].strip()
+
+for source in sources:
+    def zh(name):
+        return prose_section(source, '中文', name)
+    title, desc = re.fullmatch(r'- 标题：(.+)\n- 描述：(.+)', zh('中文页标题和描述')).groups()
+    assert meta.titles == [title] and webpage['name'] == title
+    assert meta.meta['description'] == [desc] and webpage['description'] == desc
+    assert [visible(p) for p in main.findall("section[@class='zh-intro']/p")] == [zh('一句话介绍'), zh('简介')]
+    assert [visible(li) for li in main.findall("section[@id='findings']/ul/li")] == [
+        line.removeprefix('- ').replace('**','') for line in zh('关键发现').splitlines()]
+    assert [visible(p) for p in main.findall("section[@id='related']/p")] == zh('与相近基准的关系').split('\n\n')
+    assert visible_pairs == [tuple(item.strip().split('\n\n', 1)) for item in
+                             re.split(r'^#### ', zh('常见问题'), flags=re.M)[1:]]
+    assert llms.split('\n\n')[:3] == [
+        '# Accelerate Bench', '> ' + prose_section(source, 'English', 'One sentence'),
+        prose_section(source, 'English', 'Short description')]
+
+verify_rows(main.find(".//tbody[@id='rank-rows']"))
+assert [visible(th) for th in main.findall('.//thead/tr/th')] == ['#','模型','运行框架','Score@1','GM','A₁.₂₅','A₂']
+ui = dict(re.findall(r'^\| ([^|\n]+?) \| ([^|\n]+?) \| [^|\n]+ \|$',
+                     (root.parent/'scripts/zh-ui-strings.md').read_text(), re.M))
+groups = main.findall(".//div[@id='zh-tasks']/div")
+assert [visible(g.find('h3')) for g in groups] == [ui[area] for area in data['areas']]
+task_links = [(t['name'], f"/tasks/{t['directory']}/") for t in data['tasks']]
+for area, group in zip(data['areas'], groups):
+    assert [(visible(a), a.get('href')) for a in group.findall('ul/li/a')] == [
+        link for link,t in zip(task_links, data['tasks']) if t['area'] == area]
+
+resources = [('Harbor Hub', 'https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench'),
+             ('Hugging Face', 'https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench'),
+             ('GitHub', 'https://github.com/AdAstraAbyssoque/accelerate-bench')]
+assert [(visible(a), a.get('href')) for a in main.findall(".//div[@class='actions']/a")] == [
+    (ui['paper'], '/paper.html'), *resources]
+assert llms_links == [(data['title'], base+'paper.html'), ('results.json', base+'assets/results.json'),
+                      *((name, urljoin(base, path)) for name, path in task_links),
+                      ('FAQ', base+'#faq'), *resources, ('中文', base+'zh/')]
+assert base+'zh/' in urls
+robots = RobotFileParser()
+robots_text = (root/'robots.txt').read_text()
+robots.parse(robots_text.splitlines())
+agents = ['Googlebot','Bingbot','Baiduspider','Sogou','Bytespider','GPTBot','OAI-SearchBot',
+          'ChatGPT-User','ClaudeBot','PerplexityBot','Google-Extended','Applebot']
+for line in robots_text.splitlines():
+    key, _, value = line.partition('#')[0].partition(':')
+    if key.strip().lower() == 'disallow':
+        assert not value.strip(), line
+assert robots.site_maps() == [base+'sitemap.xml']
+assert all(robots.can_fetch(agent, url) for agent in agents for url in [*urls, base+'llms.txt', base+'assets/results.json'])
+print(f'PASS: zh metadata, body, 8 visible/structured FAQ pairs, 16 leaderboard rows, 32 task links; '
+      f'bidirectional hreflang, {len(llms_links)} llms.txt destinations, sitemap and access for {len(agents)} crawlers.')

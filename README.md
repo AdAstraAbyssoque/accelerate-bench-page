@@ -9,7 +9,9 @@ This repository hosts the website. [Benchmark code](https://github.com/AdAstraAb
 ## Preview and deploy
 
 Run `python3 -m http.server 8765 --directory dist` and open http://127.0.0.1:8765/.
-After updating results, task metadata, FAQ entries (`scripts/faq.json`) or task descriptions (`scripts/task-pages-copy.json`), regenerate the committed homepage, task pages and sitemap with `node scripts/render_static.mjs`. Run `python3 scripts/verify.py` before committing. GitHub Actions deploys `dist/` on pushes to `main`.
+After updating results, task metadata, FAQ entries (`scripts/faq.json`) or task descriptions (`scripts/task-pages-copy.json`), regenerate the committed homepage, task pages, Chinese page, llms.txt and sitemap with `node scripts/render_static.mjs`. Run `python3 scripts/verify.py` before committing. GitHub Actions deploys `dist/` on pushes to `main`.
+
+The Chinese page and English llms.txt read the release excerpts in `scripts/messaging.md`. Sync those sections verbatim from the project messaging document. Review Chinese interface translations and source fields in `scripts/zh-ui-strings.md`. To also compare the generated copy with the upstream document, run `python3 scripts/verify.py --messaging /path/to/messaging.md`.
 
 ## Content and provenance
 

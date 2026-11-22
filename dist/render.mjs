@@ -12,16 +12,16 @@ export function modelIcon(name, root = '') {
   return `<img class="model-icon" src="${root}assets/models/${icons[family]}.svg" alt="" width="20" height="20">`;
 }
 
-export function modelLabel(name, stopped = [], root = '') {
-  const note = `The provider's safety system stopped the runs on ${stopped.join(', ')}; they count as failures.`;
+export function modelLabel(name, stopped = [], root = '', stoppedNote) {
+  const note = stoppedNote ?? `The provider's safety system stopped the runs on ${stopped.join(', ')}; they count as failures.`;
   const mark = stopped.length ? `<sup class="model-mark" title="${esc(note)}">†</sup>` : '';
   return `<span class="model-label">${modelIcon(name, root)}<span>${esc(name)}${mark}</span></span>`;
 }
 
-export function rankRow(model, index) {
+export function rankRow(model, index, {root = '', stoppedNote} = {}) {
   const score = `<span class="score-cell" style="--fill:${model.score}%"><strong>${format(model.score, 'score')}</strong></span>`;
   const metrics = ['gm', 'a125', 'a2'].map(key => `<td>${format(model[key], key)}</td>`).join('');
-  return `<tr><td>${String(index + 1).padStart(2, '0')}</td><td>${modelLabel(model.name, model.stopped_tasks)}</td><td>${esc(model.harness)}</td><td>${score}</td>${metrics}</tr>`;
+  return `<tr><td>${String(index + 1).padStart(2, '0')}</td><td>${modelLabel(model.name, model.stopped_tasks, root, stoppedNote)}</td><td>${esc(model.harness)}</td><td>${score}</td>${metrics}</tr>`;
 }
 
 export function taskCard(task, index, linkLabel) {
