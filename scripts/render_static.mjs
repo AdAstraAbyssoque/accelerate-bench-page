@@ -1,7 +1,7 @@
-// Regenerate only the two data-backed containers in the committed homepage.
+// Regenerate data-backed content in the committed static site.
 import assert from 'node:assert/strict';
 import {readFileSync, writeFileSync} from 'node:fs';
-import {rankRow, taskCard} from '../dist/render.mjs';
+import {esc, rankRow, taskCard} from '../dist/render.mjs';
 
 const homepage = new URL('../dist/index.html', import.meta.url);
 const readJson = path => JSON.parse(readFileSync(new URL(path, import.meta.url), 'utf8'));
@@ -26,4 +26,15 @@ function fillContainer(open, close, items) {
 }
 fillContainer('<tbody id="rank-rows">', '</tbody>', rows);
 fillContainer('<div id="task-grid" class="task-grid">', '</div><!-- /task-grid -->', cards);
+const faq = readJson('./faq.json');
+fillContainer('<ol class="steps" id="faq-entries">', '</ol>', faq.map(({question, answer}) =>
+  `<li><div class="step-copy"><h3>${esc(question)}</h3></div><div class="step-body"><p>${esc(answer)}</p></div></li>`));
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage', '@id': 'https://acceleratebench.com/#faq',
+  mainEntity: faq.map(({question, answer}) => ({
+    '@type': 'Question', name: question, acceptedAnswer: {'@type': 'Answer', text: answer}
+  }))
+};
+fillContainer('<script type="application/ld+json" id="faq-schema">', '</script>',
+  [JSON.stringify(faqSchema, null, 2).replaceAll('<', '\\u003c')]);
 writeFileSync(homepage, html);

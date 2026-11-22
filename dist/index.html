@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Accelerate Bench: Evaluating Agents for Application-Level Program Optimization</title>
-<meta name="description" content="Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.">
+<title>Accelerate Bench: a long-horizon coding agent benchmark</title>
+<meta name="description" content="Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.">
 <link rel="canonical" href="https://acceleratebench.com/">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Accelerate Bench">
-<meta property="og:title" content="Accelerate Bench: Evaluating Agents for Application-Level Program Optimization">
-<meta property="og:description" content="Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.">
+<meta property="og:title" content="Accelerate Bench: a long-horizon coding agent benchmark">
+<meta property="og:description" content="Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.">
 <meta property="og:url" content="https://acceleratebench.com/">
 <meta property="og:image" content="https://acceleratebench.com/assets/fig01_overview.png">
 <meta property="og:image:width" content="2000">
 <meta property="og:image:height" content="1104">
 <meta property="og:image:alt" content="Application-level performance engineering in Accelerate Bench">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Accelerate Bench: Evaluating Agents for Application-Level Program Optimization">
-<meta name="twitter:description" content="Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.">
+<meta name="twitter:title" content="Accelerate Bench: a long-horizon coding agent benchmark">
+<meta name="twitter:description" content="Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.">
 <meta name="twitter:image" content="https://acceleratebench.com/assets/fig01_overview.png">
 <meta name="twitter:image:alt" content="Application-level performance engineering in Accelerate Bench">
 <meta name="theme-color" content="#f8fafb">
@@ -38,8 +38,8 @@
       "@type": "WebPage",
       "@id": "https://acceleratebench.com/#webpage",
       "url": "https://acceleratebench.com/",
-      "name": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
-      "description": "Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.",
+      "name": "Accelerate Bench: a long-horizon coding agent benchmark",
+      "description": "Coding agents get up to eight hours per task to speed up 32 scientific applications. Outputs are checked on private inputs. Leaderboard, tasks and paper.",
       "isPartOf": {
         "@id": "https://acceleratebench.com/#website"
       },
@@ -57,7 +57,7 @@
       "url": "https://acceleratebench.com/paper.html",
       "headline": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
       "name": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
-      "description": "Benchmarking coding agents on 32 CPU application-optimization tasks across 8 areas, with correctness-gated performance evaluation. Paper, results, and task explorer.",
+      "description": "Accelerate Bench is a long-horizon coding agent benchmark in which agents have up to eight hours to make a scientific application faster while keeping its outputs correct.",
       "author": [
         {
           "@type": "Person",
@@ -117,7 +117,7 @@
       "@id": "https://acceleratebench.com/#dataset",
       "name": "Accelerate Bench",
       "alternateName": "AccelerateBench",
-      "description": "Accelerate Bench evaluates whether coding agents can reduce the runtime of scientific applications on fixed workloads while preserving correctness. Each task provides a working application and a CPU and memory budget.",
+      "description": "Accelerate Bench has 32 CPU tasks adapted from scientific applications and six supercomputing competitions. Each gives a coding agent a working program, a fixed workload and rules on what it may change. Within an eight-hour budget, the agent can measure where time goes, change code, build or runtime settings, and test candidates with public tests. A hidden verifier then checks the final program on private inputs and times the end-to-end workflow. On version 1.1, most programs from 16 coding agents stayed correct; what separated the agents was how much faster they made the applications.",
       "url": "https://acceleratebench.com/",
       "sameAs": [
         "https://github.com/AdAstraAbyssoque/accelerate-bench",
@@ -191,6 +191,71 @@
           "description": "All tasks except ICON can be run directly from Harbor Hub."
         }
       ]
+    }
+  ]
+}
+</script>
+<script type="application/ld+json" id="faq-schema">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://acceleratebench.com/#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Accelerate Bench measure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "How much faster a coding agent can make an existing application while its outputs stay correct. Each task fixes the computation, the workload, the checks and the timing boundaries; the agent decides where and how to optimize. A task's score is the fraction of baseline runtime saved, and an incorrect program scores zero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is it different from SWE-bench?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SWE-bench asks agents to resolve real GitHub issues, judged by the repository's tests. Accelerate Bench starts from programs that already work: correctness is required, and the score depends on how much faster the whole workflow runs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a long-horizon agent benchmark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In each run, the agent has up to eight hours to inspect, edit, build and test the program, and it can submit earlier. The paper compares it with long-horizon evaluations that use similar budgets, such as RE-Bench."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does it check that a faster program still gives the right answer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "During the run, a public test rebuilds the program, runs it on a few public inputs (typically two) and reports correctness and runtime. After the run, a hidden verifier rebuilds the submitted files and runs them on private inputs (typically four), which are often larger or freshly randomized. A program that skips a required output or recovery step fails instead of earning a speedup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does Score@1 mean, and does it include compile time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A task's reward is the fraction of baseline runtime the final program saves: a correct 2× speedup earns 0.5, and an incorrect program or one without a valid runtime earns zero. Score@1 averages this reward over the 32 tasks, with one scored run per task. Timing follows each task's workflow and excludes one-time setup and build steps; build time is reported separately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which agents have been evaluated, and which scored highest?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Version 1.1 evaluates 16 coding agents, each a model paired with a harness: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra run in Codex, and the other models run in Claude Code. Claude Sonnet 5.5 with Claude Code scored highest at 67.4%, followed by Claude Opus 5.5 at 59.4%; three Claude Opus 5.5 runs stopped by the provider's safety system count as failures. Each agent ran once per task, so agents a few points apart are not reliably ordered. The full leaderboard is at acceleratebench.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I run it on my own agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums and is available on request. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands."
+      }
     }
   ]
 }
@@ -292,6 +357,15 @@ python scripts/download_data.py</code></pre><p class="step-note">ICON’s two gr
   url = {https://arxiv.org/abs/2611.20882}
 }</pre><p id="copy-status" class="small" role="status"></p></div></section>
 <section id="release" class="section release"><div><p class="eyebrow">Resources</p><h2>Build on Accelerate Bench.</h2><p>The paper and the reported results are available here. Harbor Hub serves 31 of the v1.1 tasks, with their public tests and verifiers, without an access request; the full release of all 32 tasks is on Hugging Face after an access request, and the downloader and runner are on GitHub.</p></div><div class="resource-list"><a href="assets/accelerate-bench.pdf"><span>Paper</span><span>PDF ↗</span></a><a href="assets/results.json" download><span>Reported results</span><span>JSON ↓</span></a><a href="https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench"><span>31 tasks · v1.1</span><span>Harbor Hub ↗</span></a><a href="https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench"><span>All 32 tasks · v1.1</span><span>Hugging Face ↗</span></a><a href="https://github.com/AdAstraAbyssoque/accelerate-bench"><span>Downloader and runner</span><span>GitHub ↗</span></a><a href="https://arxiv.org/abs/2611.20882"><span>arXiv record</span><span>2611.20882 ↗</span></a></div></section>
+<section id="faq" class="section"><h2>FAQ</h2><ol class="steps" id="faq-entries">
+<li><div class="step-copy"><h3>What does Accelerate Bench measure?</h3></div><div class="step-body"><p>How much faster a coding agent can make an existing application while its outputs stay correct. Each task fixes the computation, the workload, the checks and the timing boundaries; the agent decides where and how to optimize. A task&#39;s score is the fraction of baseline runtime saved, and an incorrect program scores zero.</p></div></li>
+<li><div class="step-copy"><h3>How is it different from SWE-bench?</h3></div><div class="step-body"><p>SWE-bench asks agents to resolve real GitHub issues, judged by the repository&#39;s tests. Accelerate Bench starts from programs that already work: correctness is required, and the score depends on how much faster the whole workflow runs.</p></div></li>
+<li><div class="step-copy"><h3>Is it a long-horizon agent benchmark?</h3></div><div class="step-body"><p>Yes. In each run, the agent has up to eight hours to inspect, edit, build and test the program, and it can submit earlier. The paper compares it with long-horizon evaluations that use similar budgets, such as RE-Bench.</p></div></li>
+<li><div class="step-copy"><h3>How does it check that a faster program still gives the right answer?</h3></div><div class="step-body"><p>During the run, a public test rebuilds the program, runs it on a few public inputs (typically two) and reports correctness and runtime. After the run, a hidden verifier rebuilds the submitted files and runs them on private inputs (typically four), which are often larger or freshly randomized. A program that skips a required output or recovery step fails instead of earning a speedup.</p></div></li>
+<li><div class="step-copy"><h3>What does Score@1 mean, and does it include compile time?</h3></div><div class="step-body"><p>A task&#39;s reward is the fraction of baseline runtime the final program saves: a correct 2× speedup earns 0.5, and an incorrect program or one without a valid runtime earns zero. Score@1 averages this reward over the 32 tasks, with one scored run per task. Timing follows each task&#39;s workflow and excludes one-time setup and build steps; build time is reported separately.</p></div></li>
+<li><div class="step-copy"><h3>Which agents have been evaluated, and which scored highest?</h3></div><div class="step-body"><p>Version 1.1 evaluates 16 coding agents, each a model paired with a harness: GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra run in Codex, and the other models run in Claude Code. Claude Sonnet 5.5 with Claude Code scored highest at 67.4%, followed by Claude Opus 5.5 at 59.4%; three Claude Opus 5.5 runs stopped by the provider&#39;s safety system count as failures. Each agent ran once per task, so agents a few points apart are not reliably ordered. The full leaderboard is at acceleratebench.com.</p></div></li>
+<li><div class="step-copy"><h3>How can I run it on my own agent?</h3></div><div class="step-body"><p>31 of the 32 tasks are public on Harbor Hub and run with one command, without an access request. The full release on Hugging Face adds the ICON task and per-file checksums and is available on request. Both need Docker on a Linux x86-64 host; the website and the GitHub guide give the commands.</p></div></li>
+</ol></section>
 </main><footer><div><img class="hy-logo" src="assets/hy-logo.png" alt="Tencent Hy"><p>Tencent Hy Team · HKUST · HKUST(GZ) · THU · PKU</p></div><div><a href="#leaderboard">Results</a><a href="#tasks">Tasks</a><a href="#get-started">Get started</a><a href="#paper">Citation</a><a href="https://hub.harborframework.com/datasets/accelerate-bench/accelerate-bench">Harbor Hub ↗</a><a href="https://github.com/AdAstraAbyssoque/accelerate-bench-page">Website source ↗</a></div><p class="small">© 2026 Accelerate Bench authors</p></footer>
 <dialog id="task-dialog" aria-labelledby="task-title"><button class="close" aria-label="Close task details">×</button><div id="task-details"></div></dialog><dialog id="figure-dialog" aria-labelledby="figure-caption"><button class="close" aria-label="Close figure">×</button><img id="expanded-figure" alt=""><p id="figure-caption"></p></dialog>
 </body></html>
