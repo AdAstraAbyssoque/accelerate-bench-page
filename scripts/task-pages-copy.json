@@ -1,9 +1,10 @@
 {
   "templates": {
-    "title": "{name} task | Accelerate Bench",
-    "description": "{summary} Workload, checks and agent results.",
+    "title": "{name} optimization task | Accelerate Bench",
+    "description": "{summary} Results of 16 coding agents, with the workload and correctness checks.",
     "subtitle": "Accelerate Bench task · {area}",
-    "taskLink": "{name} task page"
+    "taskLink": "{name} task page",
+    "descriptionShort": "{summary} Results of 16 coding agents."
   },
   "labels": {
     "workload": "Workload",
@@ -21,7 +22,7 @@
   },
   "tasks": {
     "gromacs-molecular-dynamics": {
-      "summary": "GROMACS simulates the motion of interacting particles.",
+      "summary": "GROMACS runs molecular dynamics simulations of interacting particles.",
       "workload": "The supplied water and argon systems evolve under prescribed interaction models, integration steps and output schedules.",
       "correctness": "The trajectories, energies and final particle state must agree with the reference, and replaying a simulation must reproduce its trajectories and energies.",
       "timing": "Timing covers the complete mdrun simulation. Compilation and input preparation take place before the clock starts.",
@@ -185,14 +186,14 @@
       "summary": "ABySS assembles short sequencing reads into contigs using a de Bruijn graph.",
       "workload": "Generated reads are assembled with the prescribed k-mer length and coverage cutoff, followed by contig statistics.",
       "correctness": "The verifier checks contig length, N50 and k-mer agreement. The graph, coverage histogram and assembly statistics must match the reference, and repeated assembly must be reproducible.",
-      "timing": "Timing covers the run-only assembly and statistics workflow after compilation.",
+      "timing": "Timing covers the assembly and the contig statistics that follow it. Compilation is not timed.",
       "sources": {
         "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
         "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/abyss-genome-assembly — Instruction (instruction.md), Correctness and Timing and score."
       }
     },
     "mhm2-metagenome-assembly": {
-      "summary": "MHM2 coassembles paired sequencing reads from a synthetic community.",
+      "summary": "MHM2 coassembles a metagenome from paired sequencing reads of a synthetic community.",
       "workload": "The supplied paired reads pass through contigging and scaffolding rounds, followed by read alignment and abundance estimation.",
       "correctness": "The verifier checks sequence content, checkpoint contigs, graph connectivity, read alignments and abundance outputs.",
       "timing": "The entire coassembly driver is timed. Input generation and output checks run separately.",
@@ -215,7 +216,7 @@
       "summary": "wtdbg2 assembles noisy long reads and computes consensus sequences.",
       "workload": "The assembler and consensus caller process generated PacBio- and nanopore-style reads.",
       "correctness": "The verifier checks the graph and layout, genome recovery, contig statistics and k-mer agreement. Replaying consensus from the layout must reproduce the sequence.",
-      "timing": "Timing covers the run-only assembly and consensus workflow, with the same process tracing applied to both builds.",
+      "timing": "Timing covers the assembly and consensus steps. Compilation is not timed, and the baseline and the submission run under the same process tracing.",
       "sources": {
         "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
         "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/wtdbg2-long-read-assembly — Instruction (instruction.md), Correctness and Timing and score."
@@ -337,7 +338,7 @@
       "summary": "The IO500-derived task exercises parallel file I/O and filesystem metadata operations.",
       "workload": "The MPI workload runs the prescribed IOR reads and writes, metadata creation, lookup and deletion, and parallel file search.",
       "correctness": "The verifier checks file data, metadata operations and the required retention and deletion of files.",
-      "timing": "Timing covers the entire MPI run, including the same system-call tracing overhead for both builds.",
+      "timing": "Timing covers the entire MPI run. The baseline and the submission run under the same system-call tracing.",
       "sources": {
         "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
         "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/io500-file-io — Instruction (instruction.md), Correctness and Timing and score."

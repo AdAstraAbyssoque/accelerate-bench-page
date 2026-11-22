@@ -234,7 +234,9 @@ for page in pages:
     assert page.name == 'index.html' and len(title) <= 60, page
     entry = copy['tasks'][task['directory']]
     assert title == copy['templates']['title'].format(**task)
-    assert description == copy['templates']['description'].format(**entry)
+    full_description = copy['templates']['description'].format(**entry)
+    assert description == (full_description if len(full_description) <= 160
+                           else copy['templates']['descriptionShort'].format(**entry))
     longest_title = max(longest_title, len(title))
     longest_description = max(longest_description, len(description))
     graph, = blocks

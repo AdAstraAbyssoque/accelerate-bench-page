@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ABySS task | Accelerate Bench</title>
-<meta name="description" content="ABySS assembles short sequencing reads into contigs using a de Bruijn graph. Workload, checks and agent results.">
+<title>ABySS optimization task | Accelerate Bench</title>
+<meta name="description" content="ABySS assembles short sequencing reads into contigs using a de Bruijn graph. Results of 16 coding agents, with the workload and correctness checks.">
 <link rel="canonical" href="https://acceleratebench.com/tasks/abyss-genome-assembly/">
 <link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages">
 <script type="application/ld+json">
@@ -13,8 +13,8 @@
       "@type": "WebPage",
       "@id": "https://acceleratebench.com/tasks/abyss-genome-assembly/",
       "url": "https://acceleratebench.com/tasks/abyss-genome-assembly/",
-      "name": "ABySS task | Accelerate Bench",
-      "description": "ABySS assembles short sequencing reads into contigs using a de Bruijn graph. Workload, checks and agent results.",
+      "name": "ABySS optimization task | Accelerate Bench",
+      "description": "ABySS assembles short sequencing reads into contigs using a de Bruijn graph. Results of 16 coding agents, with the workload and correctness checks.",
       "isPartOf": {
         "@id": "https://acceleratebench.com/#website"
       },
@@ -53,7 +53,7 @@
 <div id="parameters"><div class="task-meta"><span>Task version<strong>1.1.0</strong></span><span>CPU budget<strong>4 CPUs</strong></span><span>Memory<strong>8 GiB</strong></span><span>Agent budget<strong>8 hours</strong></span><span>Harbor Hub<strong><a href="https://hub.harborframework.com/tasks/accelerate-bench/abyss-genome-assembly">Open task ↗</a></strong></span></div></div>
 <div class="task-contract"><div><h2>Workload</h2><p>Generated reads are assembled with the prescribed k-mer length and coverage cutoff, followed by contig statistics.</p></div>
 <div><h2>Correctness</h2><p>The verifier checks contig length, N50 and k-mer agreement. The graph, coverage histogram and assembly statistics must match the reference, and repeated assembly must be reproducible.</p></div>
-<div><h2>Timing</h2><p>Timing covers the run-only assembly and statistics workflow after compilation.</p></div></div>
+<div><h2>Timing</h2><p>Timing covers the assembly and the contig statistics that follow it. Compilation is not timed.</p></div></div>
 <section id="task-results"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody><tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>85.5%</td></tr>
 <tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5</span></span></td><td>86.1%</td></tr>
 <tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>64.8%</td></tr>
