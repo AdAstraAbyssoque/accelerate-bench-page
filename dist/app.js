@@ -1,22 +1,15 @@
-'use strict';
+import {esc, format, modelIcon, modelLabel, rankRow, taskCard} from './render.mjs';
 const $ = selector => document.querySelector(selector);
-const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const format = (value, key) => key === 'gm' ? `${value.toFixed(2)}×` : `${value.toFixed(1)}%`;
 const shortAreas = ['Molecules & materials','Fluids & atmosphere','Transport & astronomy','Bioinformatics','Numerics & graphs','Quantum circuits','Machine learning','Scientific I/O'];
 const sortLabels = {score:'Score@1',gm:'GM',a125:'A₁.₂₅',a2:'A₂'};
 let data, metric = 'score';
-function modelIcon(name) {
- const source = /^Claude/.test(name)?'claude-color':/^DeepSeek/.test(name)?'deepseek-color':/^Hy/.test(name)?'hunyuan-color':/^GLM/.test(name)?'zai':/^Kimi/.test(name)?'kimi':/^Grok/.test(name)?'grok':/^Gemini/.test(name)?'gemini-color':/^GPT/.test(name)?'openai':null;
- return source?`<img class="model-icon" src="assets/models/${source}.svg" alt="" width="20" height="20">`:`<span class="model-icon letter" aria-hidden="true">${/^Gemini/.test(name)?'✦':'G'}</span>`;
-}
-function modelLabel(name, stopped=[]) {return `<span class="model-label">${modelIcon(name)}<span>${esc(name)}${stopped.length?`<sup class="model-mark" title="${esc(`The provider's safety system stopped the runs on ${stopped.join(', ')}; they count as failures.`)}">†</sup>`:''}</span></span>`;}
 const heroAgents=['Claude Opus 5.5','GPT-6 Astra','DeepSeek-V4-Pro'];
 function renderHero() {
  $('#hero-ranks').innerHTML=data.models.filter(m=>heroAgents.includes(m.name)).map(m=>`<div class="hero-rank">${modelIcon(m.name)}<span class="rank-name">${esc(m.name)}</span><strong>${m.score.toFixed(1)}%</strong><div class="mini-track" aria-hidden="true"><div class="mini-fill" style="width:${m.score}%"></div></div></div>`).join('');
 }
 function renderResults() {
  const rows=[...data.models].sort((a,b)=>b[metric]-a[metric]);
- $('#rank-rows').innerHTML=rows.map((m,i)=>`<tr><td>${String(i+1).padStart(2,'0')}</td><td>${modelLabel(m.name,m.stopped_tasks)}</td><td>${esc(m.harness)}</td>${['score','gm','a125','a2'].map(k=>`<td>${k==='score'?`<span class="score-cell" style="--fill:${m.score}%"><strong>${format(m[k],k)}</strong></span>`:format(m[k],k)}</td>`).join('')}</tr>`).join('');
+ $('#rank-rows').innerHTML=rows.map(rankRow).join('');
  const max=Math.max(...rows.map(m=>m[metric]));
  $('#leaderboard-chart').innerHTML=rows.map(m=>`<div class="bar-row">${modelLabel(m.name,m.stopped_tasks)}<div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width:${m[metric]/max*100}%"></div></div><span class="bar-value">${format(m[metric],metric)}</span></div>`).join('');
  document.querySelectorAll('[data-sort]').forEach(b=>{const selected=b.dataset.sort===metric;b.parentElement.removeAttribute('aria-sort');if(selected)b.parentElement.setAttribute('aria-sort','descending');b.textContent=sortLabels[b.dataset.sort]+(selected?' ↓':' ↕');});
@@ -30,7 +23,7 @@ function renderTasks() {
  const q=$('#task-search').value.trim().toLowerCase(), area=$('#task-area').value;
  const tasks=data.tasks.filter(t=>(area===''||String(t.area_id)===area)&&`${t.name} ${t.area} ${t.id}`.toLowerCase().includes(q));
  $('#task-count').textContent=`${tasks.length} / ${data.tasks.length} tasks`;
- $('#task-grid').innerHTML=tasks.length?tasks.map(t=>`<button class="task-card" data-task="${esc(t.id)}" aria-label="View ${esc(t.name)} task"><div class="task-card-visual"><span class="task-index">${String(data.tasks.indexOf(t)+1).padStart(2,'0')}</span><img src="${esc(t.diagram)}" alt="" loading="lazy"></div><div class="task-card-body"><h3>${esc(t.name)}</h3><p>${esc(t.area)}</p><div class="task-card-foot"><span>${t.cpus} CPUs <span aria-hidden="true">·</span> ${t.memory_gib} GiB</span><span class="task-arrow" aria-hidden="true">↗</span></div></div></button>`).join(''):'<p class="empty">No tasks match this search.<br><button class="button" id="reset-tasks">Reset filters</button></p>';
+ $('#task-grid').innerHTML=tasks.length?tasks.map(t=>taskCard(t,data.tasks.indexOf(t))).join(''):'<p class="empty">No tasks match this search.<br><button class="button" id="reset-tasks">Reset filters</button></p>';
  renderAreaFilters();
 }
 function openTask(id) {
@@ -68,8 +61,8 @@ async function load() {
   $('#metric').addEventListener('change',e=>{metric=e.target.value;renderResults();});
   document.querySelectorAll('[data-sort]').forEach(b=>b.addEventListener('click',()=>{metric=b.dataset.sort;renderResults();}));
  } catch(e) {
-  $('#task-grid').innerHTML='<p class="empty" role="alert">Results could not load. Please reload, or read the linked paper.</p>';
-  $('#rank-rows').innerHTML='<tr><td colspan="7">Results could not load. The PDF remains available above.</td></tr>';console.error(e);
+  $('#task-count').textContent='Interactive results unavailable. Please reload to use the controls.';
+  console.error(e);
  }
  try {const r=await fetch('assets/methods.json');if(!r.ok)throw new Error('Methods unavailable');const methods=await r.json();$('#method-gallery').innerHTML=methods.map(m=>`<article><img src="${esc(m.diagram)}" alt="" loading="lazy"><h4>${esc(m.title)}</h4><p>${esc(m.description)}</p></article>`).join('');}catch{$('#method-gallery').textContent='Method illustrations are temporarily unavailable.';}
 }

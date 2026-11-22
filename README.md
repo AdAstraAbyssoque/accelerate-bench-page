@@ -9,7 +9,7 @@ This repository hosts the website. [Benchmark code](https://github.com/AdAstraAb
 ## Preview and deploy
 
 Run `python3 -m http.server 8765 --directory dist` and open http://127.0.0.1:8765/.
-Run `python3 scripts/verify.py` before committing. GitHub Actions deploys `dist/` on pushes to `main`.
+After updating results or task metadata, regenerate the committed homepage with `node scripts/render_static.mjs`. Run `python3 scripts/verify.py` before committing. GitHub Actions deploys `dist/` on pushes to `main`.
 
 ## Content and provenance
 
