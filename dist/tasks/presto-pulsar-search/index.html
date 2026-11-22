@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRESTO task | Accelerate Bench</title>
+<meta name="description" content="PRESTO searches for pulsars in a time series. Workload, checks and agent results.">
+<link rel="canonical" href="https://acceleratebench.com/tasks/presto-pulsar-search/">
+<link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://acceleratebench.com/tasks/presto-pulsar-search/",
+      "url": "https://acceleratebench.com/tasks/presto-pulsar-search/",
+      "name": "PRESTO task | Accelerate Bench",
+      "description": "PRESTO searches for pulsars in a time series. Workload, checks and agent results.",
+      "isPartOf": {
+        "@id": "https://acceleratebench.com/#website"
+      },
+      "about": {
+        "@id": "https://acceleratebench.com/#dataset"
+      },
+      "breadcrumb": {
+        "@id": "https://acceleratebench.com/tasks/presto-pulsar-search/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://acceleratebench.com/tasks/presto-pulsar-search/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accelerate Bench",
+          "item": "https://acceleratebench.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "PRESTO",
+          "item": "https://acceleratebench.com/tasks/presto-pulsar-search/"
+        }
+      ]
+    }
+  ]
+}
+</script></head>
+<body><main id="task-details" class="task-page">
+<a class="text-link" href="/">← Accelerate Bench</a>
+<div class="task-intro"><div><h1>PRESTO</h1><p class="eyebrow">Accelerate Bench task · Transport, plasma &amp; astronomy</p><p>PRESTO searches for pulsars in a time series.</p></div>
+<img src="/assets/tasks/presto_cpu.svg" alt=""></div>
+<div id="parameters"><div class="task-meta"><span>Task version<strong>2.1.0</strong></span><span>CPU budget<strong>4 CPUs</strong></span><span>Memory<strong>6 GiB</strong></span><span>Agent budget<strong>8 hours</strong></span><span>Harbor Hub<strong><a href="https://hub.harborframework.com/tasks/accelerate-bench/presto-pulsar-search">Open task ↗</a></strong></span></div></div>
+<div class="task-contract"><div><h2>Workload</h2><p>The workflow transforms a dedispersed signal containing an injected pulsar, searches for accelerated candidates, folds a candidate and renders its diagnostic plot.</p></div>
+<div><h2>Correctness</h2><p>The spectrum, candidate files, folding products and rendered output are compared with the unmodified workflow, with an allowance for record padding.</p></div>
+<div><h2>Timing</h2><p>Timing includes the Fourier transform, acceleration search, folding and plot rendering.</p></div></div>
+<section id="task-results"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody><tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>47.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5</span></span></td><td>Stopped by the provider’s safety system (scored as a failure)</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>25.8%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6 Astra</span></span></td><td>14.8%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4-Preview</span></span></td><td>20.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4</span></span></td><td>28.7%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/kimi.svg" alt="" width="20" height="20"><span>Kimi K3</span></span></td><td>20.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4.1-Flash-1017</span></span></td><td>32.9%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3</span></span></td><td>0.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3-Flash</span></span></td><td>0.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Pro</span></span></td><td>12.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Terra</span></span></td><td>20.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Flash</span></span></td><td>19.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.2</span></span></td><td>17.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/grok.svg" alt="" width="20" height="20"><span>Grok 4.6</span></span></td><td>5.7%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy3</span></span></td><td>Failed correctness</td></tr></tbody></table></div></section>
+<div class="actions"><a class="button" href="/#leaderboard">Leaderboard</a><a class="button" href="/paper.html">Paper</a><a class="button" href="https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench">Hugging Face</a><a class="button" href="https://github.com/AdAstraAbyssoque/accelerate-bench">GitHub</a></div>
+</main></body></html>

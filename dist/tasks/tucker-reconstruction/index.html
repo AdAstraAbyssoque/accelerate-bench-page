@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tucker reconstruction task | Accelerate Bench</title>
+<meta name="description" content="Tucker reconstruction compresses and reconstructs an image tensor. Workload, checks and agent results.">
+<link rel="canonical" href="https://acceleratebench.com/tasks/tucker-reconstruction/">
+<link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://acceleratebench.com/tasks/tucker-reconstruction/",
+      "url": "https://acceleratebench.com/tasks/tucker-reconstruction/",
+      "name": "Tucker reconstruction task | Accelerate Bench",
+      "description": "Tucker reconstruction compresses and reconstructs an image tensor. Workload, checks and agent results.",
+      "isPartOf": {
+        "@id": "https://acceleratebench.com/#website"
+      },
+      "about": {
+        "@id": "https://acceleratebench.com/#dataset"
+      },
+      "breadcrumb": {
+        "@id": "https://acceleratebench.com/tasks/tucker-reconstruction/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://acceleratebench.com/tasks/tucker-reconstruction/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accelerate Bench",
+          "item": "https://acceleratebench.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tucker reconstruction",
+          "item": "https://acceleratebench.com/tasks/tucker-reconstruction/"
+        }
+      ]
+    }
+  ]
+}
+</script></head>
+<body><main id="task-details" class="task-page">
+<a class="text-link" href="/">← Accelerate Bench</a>
+<div class="task-intro"><div><h1>Tucker reconstruction</h1><p class="eyebrow">Accelerate Bench task · Numerics, tensors &amp; graphs</p><p>Tucker reconstruction compresses and reconstructs an image tensor.</p></div>
+<img src="/assets/tasks/pac_tensor_cpu.svg" alt=""></div>
+<div id="parameters"><div class="task-meta"><span>Task version<strong>3.2.0</strong></span><span>CPU budget<strong>8 CPUs</strong></span><span>Memory<strong>16 GiB</strong></span><span>Agent budget<strong>8 hours</strong></span><span>Harbor Hub<strong><a href="https://hub.harborframework.com/tasks/accelerate-bench/tucker-reconstruction">Open task ↗</a></strong></span></div></div>
+<div class="task-contract"><div><h2>Workload</h2><p>The application processes the supplied tensor at the requested ranks and repeats the prescribed contractions.</p></div>
+<div><h2>Correctness</h2><p>The final tensor, intermediate reconstruction stages, shapes and reconstruction error must agree with the reference.</p></div>
+<div><h2>Timing</h2><p>Timing covers one workflow process, including reading the request and writing the complete result.</p></div></div>
+<section id="task-results"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody><tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>79.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5</span></span></td><td>91.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>72.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6 Astra</span></span></td><td>73.9%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4-Preview</span></span></td><td>82.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4</span></span></td><td>88.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/kimi.svg" alt="" width="20" height="20"><span>Kimi K3</span></span></td><td>90.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4.1-Flash-1017</span></span></td><td>88.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3</span></span></td><td>87.7%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3-Flash</span></span></td><td>85.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Pro</span></span></td><td>62.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Terra</span></span></td><td>76.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Flash</span></span></td><td>75.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.2</span></span></td><td>70.7%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/grok.svg" alt="" width="20" height="20"><span>Grok 4.6</span></span></td><td>78.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy3</span></span></td><td>39.9%</td></tr></tbody></table></div></section>
+<div class="actions"><a class="button" href="/#leaderboard">Leaderboard</a><a class="button" href="/paper.html">Paper</a><a class="button" href="https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench">Hugging Face</a><a class="button" href="https://github.com/AdAstraAbyssoque/accelerate-bench">GitHub</a></div>
+</main></body></html>

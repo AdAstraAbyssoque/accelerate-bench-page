@@ -3,4 +3,36 @@
   <url><loc>https://acceleratebench.com/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://acceleratebench.com/paper.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://acceleratebench.com/assets/accelerate-bench.pdf</loc><lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/gromacs-molecular-dynamics/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/lammps-molecular-dynamics/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/gpaw-fd-dft-restart/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/qe-scf-nscf-dos/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/siesta-dft-restart/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/fluidity-heat-checkpoint/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/icon-atmosphere-checkpoint/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/mpas-atmosphere-restart/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/nemo-lock-exchange/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/openfoam-cavity-piso/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/palabos-lattice-boltzmann/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/su2-transonic-euler/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/openmc-multigroup-transport/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/shengbte-phonon-transport/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/vpic-harris-reconnection/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/presto-pulsar-search/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/abyss-genome-assembly/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/mhm2-metagenome-assembly/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/mrbayes-phylogenetics/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/wtdbg2-long-read-assembly/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/hpcg-multigrid-pcg/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/hpl-dense-lu/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/fegrass-graph-sparsification/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/minivite-louvain/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/nufft-imaging/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/tucker-reconstruction/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/quest-circuit-simulation/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/qibotn-tensor-network-circuits/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/paged-lm-generation/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/thundersvm-train-predict/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/datalife-io-monitoring/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://acceleratebench.com/tasks/io500-file-io/</loc><lastmod>2026-11-23</lastmod></url>
 </urlset>

@@ -1,0 +1,347 @@
+{
+  "templates": {
+    "title": "{name} task | Accelerate Bench",
+    "description": "{summary} Workload, checks and agent results.",
+    "subtitle": "Accelerate Bench task · {area}",
+    "taskLink": "{name} task page"
+  },
+  "labels": {
+    "workload": "Workload",
+    "correctness": "Correctness",
+    "timing": "Timing",
+    "leaderboard": "Leaderboard",
+    "paper": "Paper",
+    "repository": "GitHub",
+    "dataset": "Hugging Face"
+  },
+  "sources": {
+    "title, subtitle, labels": "Task T6, part 2; dist/assets/results.json tasks[].name and tasks[].area.",
+    "description": "Task-specific summary below; dist/assets/results.json tasks[].rewards_percent and models[].name.",
+    "taskLink": "Task T6, part 2; dist/assets/results.json tasks[].name."
+  },
+  "tasks": {
+    "gromacs-molecular-dynamics": {
+      "summary": "GROMACS simulates the motion of interacting particles.",
+      "workload": "The supplied water and argon systems evolve under prescribed interaction models, integration steps and output schedules.",
+      "correctness": "The trajectories, energies and final particle state must agree with the reference, and replaying a simulation must reproduce its trajectories and energies.",
+      "timing": "Timing covers the complete mdrun simulation. Compilation and input preparation take place before the clock starts.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing": "arXiv:2611.20882v1, Appendix D, Table 12, p. 26 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/gromacs-molecular-dynamics — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "lammps-molecular-dynamics": {
+      "summary": "LAMMPS follows the motion of atoms in a molecular dynamics simulation.",
+      "workload": "The serial solver runs generated molecular dynamics inputs and writes a checkpoint for continuation.",
+      "correctness": "The verifier compares thermodynamic histories, trajectory frames and the final atomic state. An unmodified LAMMPS binary must resume the checkpoint and reproduce the reference continuation.",
+      "timing": "Timing includes the simulation process and the continuation that the unmodified binary runs from its checkpoint.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/lammps-molecular-dynamics — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "gpaw-fd-dft-restart": {
+      "summary": "GPAW computes electronic structure with finite-difference density functional theory.",
+      "workload": "Each molecular or periodic crystal case runs a self-consistent calculation, takes prescribed geometry steps and resumes from a saved state.",
+      "correctness": "Snapshot fields, atomic identities and integrated electron density are checked. The unmodified application must also resume the checkpoint and reproduce the continued calculation.",
+      "timing": "The timer covers the initial workflow and the resume process. Separate checkpoint checks are outside the timed interval.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/gpaw-fd-dft-restart — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "qe-scf-nscf-dos": {
+      "summary": "Quantum ESPRESSO calculates electronic states and the density of states of a crystal.",
+      "workload": "The workflow runs self-consistent and non-self-consistent calculations with supplied pseudopotentials, extracts the charge density and computes the density of states.",
+      "correctness": "The verifier checks physical arrays, aligned wavefunctions, charge density, density of states, convergence and checkpoint recovery.",
+      "timing": "Timing covers the initial electronic calculation, density postprocessing, the non-self-consistent calculation and the density-of-states process. Checkpoint recovery is checked separately.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/qe-scf-nscf-dos — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "siesta-dft-restart": {
+      "summary": "SIESTA calculates electronic structure with density functional theory.",
+      "workload": "Each case starts a cold self-consistent calculation, perturbs the geometry and restarts from the computed density matrix.",
+      "correctness": "Eigenvalues, forces, stresses, grid fields and density-matrix entries must reproduce the reference within tolerance. The self-consistent calculation must converge.",
+      "timing": "The cold calculation and its restart are timed as complete processes. A separate recovery check uses the unmodified application.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/siesta-dft-restart — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "fluidity-heat-checkpoint": {
+      "summary": "Fluidity simulates heat evolution on a distributed mesh and tracks detectors through a restart.",
+      "workload": "The heat case redistributes a mesh before a discontinuous Galerkin solve. The checkpoint case generates a mesh, runs the simulation and resumes the detectors in a fresh process.",
+      "correctness": "Mesh topology, fields and statistics must agree with the reference. Mesh, halo and detector checkpoints must match, and the unmodified solver must recover the same result.",
+      "timing": "Heat timing includes redistribution and the solve. Checkpoint timing includes mesh generation, the initial run and its restart.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/fluidity-heat-checkpoint — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "icon-atmosphere-checkpoint": {
+      "summary": "ICON simulates atmospheric flow on a global grid.",
+      "workload": "The task runs the Hadley and JABW atmosphere cases on the upstream grid and writes full-field history and checkpoint outputs.",
+      "correctness": "The task checks conservation and the outputs of the restarted atmosphere simulation.",
+      "timing": "",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "correctness": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28; scripts/task-metadata-v11.json, icon-atmosphere-checkpoint.description."
+      }
+    },
+    "mpas-atmosphere-restart": {
+      "summary": "MPAS-A computes an atmospheric forecast on a spherical mesh.",
+      "workload": "Each case initializes the prescribed grid, runs a Jablonowski–Williamson forecast and writes the model history and restart state.",
+      "correctness": "The verifier compares initial, history and restart arrays with the reference, checks air-mass conservation and tests checkpoint continuation.",
+      "timing": "Initialization and the forecast are timed. Checkpoint continuation runs outside the timed interval.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/mpas-atmosphere-restart — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "nemo-lock-exchange": {
+      "summary": "NEMO simulates a lock-exchange flow in an ocean model.",
+      "workload": "The distributed ocean run writes full history fields and restart files at the checkpoint and final steps.",
+      "correctness": "NetCDF variables, dimensions and fields must match the reference. The unmodified ocean model must resume from the checkpoint and recover the prescribed final state.",
+      "timing": "The timer covers the initial ocean simulation. Restart runs and output comparisons follow separately.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/nemo-lock-exchange — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "openfoam-cavity-piso": {
+      "summary": "OpenFOAM computes transient velocity and pressure fields for a cavity flow.",
+      "workload": "The workflow constructs the cavity mesh, checks it and advances the supplied case with the pisoFoam solver.",
+      "correctness": "Complete velocity and pressure fields must match the reference at the prescribed output times. The verifier also checks probe velocities and flow summaries.",
+      "timing": "Mesh generation, mesh checking and the solver all contribute to the measured time.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/openfoam-cavity-piso — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "palabos-lattice-boltzmann": {
+      "summary": "Palabos simulates fluid flow with a lattice Boltzmann method.",
+      "workload": "Cavity-derived and periodic shear cases prescribe the lattice dimensions, relaxation parameter, boundary conditions and iteration count.",
+      "correctness": "Diagnostic histories and the final density and velocity at every lattice site must agree with the reference simulation.",
+      "timing": "Timing covers the entire simulation process for each case.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/palabos-lattice-boltzmann — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "su2-transonic-euler": {
+      "summary": "SU2 computes compressible Euler flow over an airfoil.",
+      "workload": "The serial solver advances the supplied NACA0012 mesh at the prescribed Mach number and angle of attack for each case.",
+      "correctness": "The verifier checks restart, volume, surface and convergence outputs at every required snapshot, including aerodynamic coefficients and flow variables.",
+      "timing": "Timing covers the serial SU2_CFD solver process.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/su2-transonic-euler — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "openmc-multigroup-transport": {
+      "summary": "OpenMC simulates multigroup neutron transport in a fuel-pin geometry.",
+      "workload": "Each case runs a prescribed criticality calculation with the supplied cross sections, records tallies and writes source banks for recovery.",
+      "correctness": "Statepoint datasets and tallies must agree with the reference, and the source banks must match exactly and support checkpoint recovery.",
+      "timing": "Timing covers the complete transport process. Restart checks with the unmodified executable run separately.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/openmc-multigroup-transport — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "shengbte-phonon-transport": {
+      "summary": "ShengBTE calculates bulk lattice thermal transport from crystal force constants.",
+      "workload": "The workflow computes phonons and scattering rates and solves the transport equation at the prescribed temperatures using the relaxation-time approximation and an iterative solver.",
+      "correctness": "Per-mode results, conductivity tensors and temperature-dependent outputs must match the reference. The iterative solution must converge.",
+      "timing": "The complete MPI run across the prescribed temperatures is timed.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/shengbte-phonon-transport — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "vpic-harris-reconnection": {
+      "summary": "VPIC simulates magnetic reconnection in a plasma with a particle-in-cell method.",
+      "workload": "The distributed simulation runs the prescribed Harris reconnection case and writes diagnostics and a midpoint checkpoint.",
+      "correctness": "Energy histories must agree with the reference. Field, particle and species diagnostics must match byte for byte, including after checkpoint recovery.",
+      "timing": "Timing covers the continuous simulation. Deck compilation, restart runs and output comparisons are excluded.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/vpic-harris-reconnection — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "presto-pulsar-search": {
+      "summary": "PRESTO searches for pulsars in a time series.",
+      "workload": "The workflow transforms a dedispersed signal containing an injected pulsar, searches for accelerated candidates, folds a candidate and renders its diagnostic plot.",
+      "correctness": "The spectrum, candidate files, folding products and rendered output are compared with the unmodified workflow, with an allowance for record padding.",
+      "timing": "Timing includes the Fourier transform, acceleration search, folding and plot rendering.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/presto-pulsar-search — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "abyss-genome-assembly": {
+      "summary": "ABySS assembles short sequencing reads into contigs using a de Bruijn graph.",
+      "workload": "Generated reads are assembled with the prescribed k-mer length and coverage cutoff, followed by contig statistics.",
+      "correctness": "The verifier checks contig length, N50 and k-mer agreement. The graph, coverage histogram and assembly statistics must match the reference, and repeated assembly must be reproducible.",
+      "timing": "Timing covers the run-only assembly and statistics workflow after compilation.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/abyss-genome-assembly — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "mhm2-metagenome-assembly": {
+      "summary": "MHM2 coassembles paired sequencing reads from a synthetic community.",
+      "workload": "The supplied paired reads pass through contigging and scaffolding rounds, followed by read alignment and abundance estimation.",
+      "correctness": "The verifier checks sequence content, checkpoint contigs, graph connectivity, read alignments and abundance outputs.",
+      "timing": "The entire coassembly driver is timed. Input generation and output checks run separately.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/mhm2-metagenome-assembly — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "mrbayes-phylogenetics": {
+      "summary": "MrBayes infers phylogenetic trees from DNA alignments.",
+      "workload": "Independent coupled Markov chains sample trees, save their state midway and then resume to produce posterior summaries.",
+      "correctness": "Parameter and tree samples, the consensus tree, posterior summaries and checkpoint recovery are checked.",
+      "timing": "Timing includes the initial and resumed inference processes and their posterior analysis.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/mrbayes-phylogenetics — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "wtdbg2-long-read-assembly": {
+      "summary": "wtdbg2 assembles noisy long reads and computes consensus sequences.",
+      "workload": "The assembler and consensus caller process generated PacBio- and nanopore-style reads.",
+      "correctness": "The verifier checks the graph and layout, genome recovery, contig statistics and k-mer agreement. Replaying consensus from the layout must reproduce the sequence.",
+      "timing": "Timing covers the run-only assembly and consensus workflow, with the same process tracing applied to both builds.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/wtdbg2-long-read-assembly — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "hpcg-multigrid-pcg": {
+      "summary": "The HPCG-derived task solves sparse linear systems on a structured grid.",
+      "workload": "The program constructs the prescribed stencil matrix and solves for both supplied right-hand sides.",
+      "correctness": "Both full solution vectors must be finite, satisfy the error and residual bounds and reproduce the same values on a repeated run.",
+      "timing": "Timing includes reading the input, constructing the matrix, solver setup, both solves and writing the solutions.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing": "arXiv:2611.20882v1, Appendix D, Table 12, p. 26 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/hpcg-multigrid-pcg — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "hpl-dense-lu": {
+      "summary": "The HPL-derived task solves a dense linear system using MPI.",
+      "workload": "The application loads and distributes the prescribed matrix and right-hand side, solves the system and exports the full vector.",
+      "correctness": "The verifier checks the exported solution against the known solution and measures its residual.",
+      "timing": "Timing covers MPI startup, data loading and distribution, the solve, full result export and shutdown.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/hpl-dense-lu — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "fegrass-graph-sparsification": {
+      "summary": "The graph sparsification task builds a sparse graph to precondition linear solves.",
+      "workload": "A generated graph is sparsified and factored before conjugate-gradient solves for multiple right-hand sides.",
+      "correctness": "The selected edges must match the reference. The verifier checks the sparse matrix, the Laplacian factor, convergence and the reported residuals.",
+      "timing": "The entire workflow process is timed, from reading the request through writing the result.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/fegrass-graph-sparsification — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "minivite-louvain": {
+      "summary": "miniVite identifies communities in a weighted graph using the first phase of distributed Louvain clustering.",
+      "workload": "Each MPI run reads a generated graph, exchanges community assignments and iterates until convergence.",
+      "correctness": "The current and target partition for every vertex at every iteration must match the reference up to community-label renaming. Repeated runs must reproduce the same output.",
+      "timing": "Timing covers the entire MPI process.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/minivite-louvain — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "nufft-imaging": {
+      "summary": "NUFFT imaging reconstructs an image from nonuniform Fourier measurements.",
+      "workload": "The application bins the observations and solves a regularized inverse imaging problem with conjugate gradients.",
+      "correctness": "The verifier checks the permutation, bin offsets, reconstructed image, residual and iteration history against reference computations.",
+      "timing": "Timing covers the complete reconstruction process.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/nufft-imaging — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "tucker-reconstruction": {
+      "summary": "Tucker reconstruction compresses and reconstructs an image tensor.",
+      "workload": "The application processes the supplied tensor at the requested ranks and repeats the prescribed contractions.",
+      "correctness": "The final tensor, intermediate reconstruction stages, shapes and reconstruction error must agree with the reference.",
+      "timing": "Timing covers one workflow process, including reading the request and writing the complete result.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/tucker-reconstruction — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "quest-circuit-simulation": {
+      "summary": "QuEST simulates quantum circuits using state vectors and density matrices.",
+      "workload": "The application executes every gate on generated circuits and returns the complete state and per-qubit measurement probabilities.",
+      "correctness": "Every amplitude or density-matrix entry and each measurement probability must agree with an independent simulator. The state must be normalized and repeatable.",
+      "timing": "Timing covers the full-state runner process for each generated circuit.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 29 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/quest-circuit-simulation — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "qibotn-tensor-network-circuits": {
+      "summary": "QiboTN simulates parameterized quantum circuits and computes observables.",
+      "workload": "Each input specifies an entangling circuit whose full state and observables are computed on the CPU.",
+      "correctness": "An independent state-vector simulation supplies the reference for amplitudes, normalization, single-qubit expectations, selected probabilities and the tensor-network observable.",
+      "timing": "Each circuit runs in a fresh Python process. Timing includes interpreter startup, imports and the complete workflow.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/qibotn-tensor-network-circuits — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "paged-lm-generation": {
+      "summary": "The paged generation task runs a language model with paged key-value caches.",
+      "workload": "A NumPy implementation loads the supplied SmolLM2 weights, prefills a prompt, decodes tokens, checkpoints the state and resumes generation in a fresh process.",
+      "correctness": "The verifier compares layer states, caches, sampling probabilities and tokens with an independent implementation and checks the recovery position.",
+      "timing": "Timing includes model loading, prefill, decoding, checkpointing and resumed generation across both processes.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing": "arXiv:2611.20882v1, Appendix D, Table 12, p. 26 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/paged-lm-generation — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "thundersvm-train-predict": {
+      "summary": "ThunderSVM trains a support vector classifier and predicts labels from the saved model.",
+      "workload": "Cases use Adult-derived data and a generated radial-basis-function problem. Separate prediction processes reload each trained model.",
+      "correctness": "The verifier checks the saved classifier, support vectors and predictions.",
+      "timing": "Timing includes training and both prediction processes on the generated radial-basis-function problem and the transformed Adult workload.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/thundersvm-train-predict — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "datalife-io-monitoring": {
+      "summary": "DataLife monitors file access and reconstructs the dataflow graph and critical path of an I/O workflow.",
+      "workload": "A fixed driver performs the prescribed file operations under the monitor, then the analysis program processes the recorded observations.",
+      "correctness": "File contents, block-access counts and order, graph edges, critical paths and rankings must agree with the independently computed results.",
+      "timing": "Timing includes all monitored I/O stages and the subsequent analysis process.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 27 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/datalife-io-monitoring — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    },
+    "io500-file-io": {
+      "summary": "The IO500-derived task exercises parallel file I/O and filesystem metadata operations.",
+      "workload": "The MPI workload runs the prescribed IOR reads and writes, metadata creation, lookup and deletion, and parallel file search.",
+      "correctness": "The verifier checks file data, metadata operations and the required retention and deletion of files.",
+      "timing": "Timing covers the entire MPI run, including the same system-call tracing overhead for both builds.",
+      "sources": {
+        "summary, workload": "arXiv:2611.20882v1, Appendix D.1, Table 14, p. 28 (dist/assets/accelerate-bench.pdf).",
+        "workload, correctness, timing (release instruction)": "https://hub.harborframework.com/tasks/accelerate-bench/io500-file-io — Instruction (instruction.md), Correctness and Timing and score."
+      }
+    }
+  }
+}

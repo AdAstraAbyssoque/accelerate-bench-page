@@ -1,4 +1,4 @@
-import {esc, format, modelIcon, modelLabel, rankRow, taskCard} from './render.mjs';
+import {esc, format, modelIcon, modelLabel, rankRow, taskCard, taskMeta, taskResults} from './render.mjs?v=20261123-pages';
 const $ = selector => document.querySelector(selector);
 const shortAreas = ['Molecules & materials','Fluids & atmosphere','Transport & astronomy','Bioinformatics','Numerics & graphs','Quantum circuits','Machine learning','Scientific I/O'];
 const sortLabels = {score:'Score@1',gm:'GM',a125:'A₁.₂₅',a2:'A₂'};
@@ -23,12 +23,12 @@ function renderTasks() {
  const q=$('#task-search').value.trim().toLowerCase(), area=$('#task-area').value;
  const tasks=data.tasks.filter(t=>(area===''||String(t.area_id)===area)&&`${t.name} ${t.area} ${t.id}`.toLowerCase().includes(q));
  $('#task-count').textContent=`${tasks.length} / ${data.tasks.length} tasks`;
- $('#task-grid').innerHTML=tasks.length?tasks.map(t=>taskCard(t,data.tasks.indexOf(t))).join(''):'<p class="empty">No tasks match this search.<br><button class="button" id="reset-tasks">Reset filters</button></p>';
+ $('#task-grid').innerHTML=tasks.length?tasks.map(t=>taskCard(t,data.tasks.indexOf(t),$('#task-grid').dataset.linkLabel)).join(''):'<p class="empty">No tasks match this search.<br><button class="button" id="reset-tasks">Reset filters</button></p>';
  renderAreaFilters();
 }
 function openTask(id) {
  const t=data.tasks.find(x=>x.id===id);if(!t)return;
- $('#task-details').innerHTML=`<p class="eyebrow">${esc(t.area)}</p><h2 id="task-title">${esc(t.name)}</h2><div class="task-meta"><span>Task version<strong>${esc(t.version)}</strong></span><span>CPU budget<strong>${t.cpus} CPUs</strong></span><span>Memory<strong>${t.memory_gib} GiB</strong></span><span>Agent budget<strong>${t.agent_hours} hours</strong></span><span>Harbor Hub<strong>${t.harbor?`<a href="${esc(t.harbor)}">Open task ↗</a>`:'Full release only'}</strong></span></div><img class="task-detail-diagram" src="${esc(t.diagram)}" alt="Illustration of ${esc(t.name)}"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody>${data.models.map((m,i)=>`<tr><td>${modelLabel(m.name)}</td><td>${(t.stopped_agents||[]).includes(m.name)?'Stopped by the provider’s safety system (scored as a failure)':t.rewards_percent[i]===null?'Failed correctness':t.rewards_percent[i].toFixed(1)+'%'}</td></tr>`).join('')}</tbody></table></div>`;
+ $('#task-details').innerHTML=`<p class="eyebrow">${esc(t.area)}</p><h2 id="task-title">${esc(t.name)}</h2>${taskMeta(t)}<img class="task-detail-diagram" src="${esc(t.diagram)}" alt="Illustration of ${esc(t.name)}">${taskResults(t, data.models)}`;
  $('#task-dialog').showModal();
 }
 document.querySelectorAll('dialog').forEach(d=>{

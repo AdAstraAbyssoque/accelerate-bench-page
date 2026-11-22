@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ThunderSVM task | Accelerate Bench</title>
+<meta name="description" content="ThunderSVM trains a support vector classifier and predicts labels from the saved model. Workload, checks and agent results.">
+<link rel="canonical" href="https://acceleratebench.com/tasks/thundersvm-train-predict/">
+<link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://acceleratebench.com/tasks/thundersvm-train-predict/",
+      "url": "https://acceleratebench.com/tasks/thundersvm-train-predict/",
+      "name": "ThunderSVM task | Accelerate Bench",
+      "description": "ThunderSVM trains a support vector classifier and predicts labels from the saved model. Workload, checks and agent results.",
+      "isPartOf": {
+        "@id": "https://acceleratebench.com/#website"
+      },
+      "about": {
+        "@id": "https://acceleratebench.com/#dataset"
+      },
+      "breadcrumb": {
+        "@id": "https://acceleratebench.com/tasks/thundersvm-train-predict/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://acceleratebench.com/tasks/thundersvm-train-predict/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accelerate Bench",
+          "item": "https://acceleratebench.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "ThunderSVM",
+          "item": "https://acceleratebench.com/tasks/thundersvm-train-predict/"
+        }
+      ]
+    }
+  ]
+}
+</script></head>
+<body><main id="task-details" class="task-page">
+<a class="text-link" href="/">← Accelerate Bench</a>
+<div class="task-intro"><div><h1>ThunderSVM</h1><p class="eyebrow">Accelerate Bench task · Machine learning</p><p>ThunderSVM trains a support vector classifier and predicts labels from the saved model.</p></div>
+<img src="/assets/tasks/pac_thundersvm_cpu.svg" alt=""></div>
+<div id="parameters"><div class="task-meta"><span>Task version<strong>4.4.0</strong></span><span>CPU budget<strong>4 CPUs</strong></span><span>Memory<strong>8 GiB</strong></span><span>Agent budget<strong>8 hours</strong></span><span>Harbor Hub<strong><a href="https://hub.harborframework.com/tasks/accelerate-bench/thundersvm-train-predict">Open task ↗</a></strong></span></div></div>
+<div class="task-contract"><div><h2>Workload</h2><p>Cases use Adult-derived data and a generated radial-basis-function problem. Separate prediction processes reload each trained model.</p></div>
+<div><h2>Correctness</h2><p>The verifier checks the saved classifier, support vectors and predictions.</p></div>
+<div><h2>Timing</h2><p>Timing includes training and both prediction processes on the generated radial-basis-function problem and the transformed Adult workload.</p></div></div>
+<section id="task-results"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody><tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>89.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5</span></span></td><td>91.7%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>63.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6 Astra</span></span></td><td>69.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4-Preview</span></span></td><td>72.4%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4</span></span></td><td>56.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/kimi.svg" alt="" width="20" height="20"><span>Kimi K3</span></span></td><td>79.9%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4.1-Flash-1017</span></span></td><td>69.9%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3</span></span></td><td>69.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3-Flash</span></span></td><td>77.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Pro</span></span></td><td>64.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Terra</span></span></td><td>57.8%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Flash</span></span></td><td>79.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.2</span></span></td><td>58.4%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/grok.svg" alt="" width="20" height="20"><span>Grok 4.6</span></span></td><td>72.6%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy3</span></span></td><td>73.0%</td></tr></tbody></table></div></section>
+<div class="actions"><a class="button" href="/#leaderboard">Leaderboard</a><a class="button" href="/paper.html">Paper</a><a class="button" href="https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench">Hugging Face</a><a class="button" href="https://github.com/AdAstraAbyssoque/accelerate-bench">GitHub</a></div>
+</main></body></html>

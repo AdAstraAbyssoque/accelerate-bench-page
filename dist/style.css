@@ -42,3 +42,20 @@ header{height:76px;position:sticky;top:0;background:#ffffffee;backdrop-filter:bl
 .task-meta a{color:var(--blue);border-bottom:1px solid #c6d4e4}
 .task-meta a:hover{border-color:var(--blue)}
 @media(max-width:760px){.steps>li{grid-template-columns:1fr;gap:16px}}
+
+/* The existing card button opens the dialog. Its corner link opens the static page. */
+.task-card-wrap{display:grid;position:relative;min-width:0}
+.task-card-wrap .task-arrow{visibility:hidden}
+.task-permalink{position:absolute;right:4px;bottom:4px;display:grid;place-items:center;width:34px;height:34px;color:#71859b;font-size:14px}
+.task-permalink:hover,.task-permalink:focus-visible{color:var(--blue);text-decoration:underline}
+.task-page{max-width:900px;margin:auto;padding:48px 24px 64px}
+.task-intro{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:32px 0}
+.task-intro h1{font-size:clamp(32px,4vw,44px);line-height:1.15;margin:0 0 12px}
+.task-intro img{width:clamp(100px,24vw,180px)}
+.task-contract p,.task-intro p:not(.eyebrow){font-size:15px;line-height:1.65;color:var(--muted)}
+.task-contract h2{font-size:17px;margin:18px 0 4px}
+.task-contract p{margin:0}
+.task-page #task-results{margin-top:32px}
+.task-page table{white-space:normal}
+.task-page .actions{flex-wrap:wrap}
+@media(max-width:520px){.task-page{padding:28px 20px 40px}.task-intro{gap:12px}.task-intro img{width:80px}.task-page .task-meta{gap:12px 20px}}

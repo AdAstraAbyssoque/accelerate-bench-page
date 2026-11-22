@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QuEST task | Accelerate Bench</title>
+<meta name="description" content="QuEST simulates quantum circuits using state vectors and density matrices. Workload, checks and agent results.">
+<link rel="canonical" href="https://acceleratebench.com/tasks/quest-circuit-simulation/">
+<link rel="icon" href="/assets/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261123-pages">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://acceleratebench.com/tasks/quest-circuit-simulation/",
+      "url": "https://acceleratebench.com/tasks/quest-circuit-simulation/",
+      "name": "QuEST task | Accelerate Bench",
+      "description": "QuEST simulates quantum circuits using state vectors and density matrices. Workload, checks and agent results.",
+      "isPartOf": {
+        "@id": "https://acceleratebench.com/#website"
+      },
+      "about": {
+        "@id": "https://acceleratebench.com/#dataset"
+      },
+      "breadcrumb": {
+        "@id": "https://acceleratebench.com/tasks/quest-circuit-simulation/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://acceleratebench.com/tasks/quest-circuit-simulation/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accelerate Bench",
+          "item": "https://acceleratebench.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "QuEST",
+          "item": "https://acceleratebench.com/tasks/quest-circuit-simulation/"
+        }
+      ]
+    }
+  ]
+}
+</script></head>
+<body><main id="task-details" class="task-page">
+<a class="text-link" href="/">← Accelerate Bench</a>
+<div class="task-intro"><div><h1>QuEST</h1><p class="eyebrow">Accelerate Bench task · Quantum circuits</p><p>QuEST simulates quantum circuits using state vectors and density matrices.</p></div>
+<img src="/assets/tasks/quest_cpu.svg" alt=""></div>
+<div id="parameters"><div class="task-meta"><span>Task version<strong>3.1.0</strong></span><span>CPU budget<strong>4 CPUs</strong></span><span>Memory<strong>8 GiB</strong></span><span>Agent budget<strong>8 hours</strong></span><span>Harbor Hub<strong><a href="https://hub.harborframework.com/tasks/accelerate-bench/quest-circuit-simulation">Open task ↗</a></strong></span></div></div>
+<div class="task-contract"><div><h2>Workload</h2><p>The application executes every gate on generated circuits and returns the complete state and per-qubit measurement probabilities.</p></div>
+<div><h2>Correctness</h2><p>Every amplitude or density-matrix entry and each measurement probability must agree with an independent simulator. The state must be normalized and repeatable.</p></div>
+<div><h2>Timing</h2><p>Timing covers the full-state runner process for each generated circuit.</p></div></div>
+<section id="task-results"><h3>Reported runtime-saving reward</h3><p class="caption">First-run rewards on benchmark v1.1, from the data behind paper Table 1, rounded to one decimal. Failed correctness is distinct from a correct result with zero speedup reward.</p><div class="table-scroll"><table><thead><tr><th scope="col">Agent model</th><th scope="col">Reward</th></tr></thead><tbody><tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Sonnet 5.5</span></span></td><td>80.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/claude-color.svg" alt="" width="20" height="20"><span>Claude Opus 5.5</span></span></td><td>82.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Sol</span></span></td><td>75.4%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6 Astra</span></span></td><td>72.0%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4-Preview</span></span></td><td>80.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy4</span></span></td><td>66.5%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/kimi.svg" alt="" width="20" height="20"><span>Kimi K3</span></span></td><td>93.3%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4.1-Flash-1017</span></span></td><td>13.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3</span></span></td><td>Failed correctness</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.3-Flash</span></span></td><td>58.4%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Pro</span></span></td><td>97.4%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/openai.svg" alt="" width="20" height="20"><span>GPT-6.1 Terra</span></span></td><td>81.8%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/deepseek-color.svg" alt="" width="20" height="20"><span>DeepSeek-V4-Flash</span></span></td><td>22.8%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/zai.svg" alt="" width="20" height="20"><span>GLM-5.2</span></span></td><td>70.2%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/grok.svg" alt="" width="20" height="20"><span>Grok 4.6</span></span></td><td>72.1%</td></tr>
+<tr><td><span class="model-label"><img class="model-icon" src="/assets/models/hunyuan-color.svg" alt="" width="20" height="20"><span>Hy3</span></span></td><td>0.0%</td></tr></tbody></table></div></section>
+<div class="actions"><a class="button" href="/#leaderboard">Leaderboard</a><a class="button" href="/paper.html">Paper</a><a class="button" href="https://huggingface.co/datasets/AdAstraAbyssoque/accelerate-bench">Hugging Face</a><a class="button" href="https://github.com/AdAstraAbyssoque/accelerate-bench">GitHub</a></div>
+</main></body></html>
