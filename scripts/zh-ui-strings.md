@@ -8,8 +8,8 @@
 | tasks | 任务列表 | results.json 的 tasks；T12 任务卡第 1 项 |
 | paper | 论文 | messaging.md 中文 FAQ；官网 paper.html |
 | headers | #、模型、运行框架、Score@1、GM、A₁.₂₅、A₂ | T12 任务卡指定表头；论文 §4 表 1，第 6 页；results.json 的 models[].name、harness、score、gm、a125、a2 |
-| caption | 论文表 {table} · 基准 v{version} · {agents} 个智能体 × {tasks} 个任务，共 {outcomes} 个结果。每个智能体在每个任务上取首次运行，所有结果均在同一台机器上计分。Score@1 和 Aτ 用百分比表示，GM 用倍数表示。每个智能体由模型和运行框架组成，均请求高推理强度。结果错误或未提速，节省运行时间的奖励均为零。{omitted} 的 v{version} 运行尚未完成，未列入表中。 | 首页 #leaderboard 的 caption；论文 §3–4，第 5–6 页；results.json 的 sources.leaderboard、selection.benchmark_version、models、tasks、metric_note、selection.not_listed |
-| stopped | 模型提供方的安全系统中止了 {model} 在 {stopped} 上的运行，这些运行均按失败计，奖励为零。该智能体在其余 {remaining} 个任务上的得分为 {score}%。 | 首页 #leaderboard 的 † 脚注；论文 §4 表 1，第 6 页；results.json 的 models[].stopped_tasks、tasks、selection.score_on_other_tasks |
+| caption | 论文表 {table} · 基准 v{version} · {agents} 个智能体 × {tasks} 个任务，共 {outcomes} 个结果。每个智能体在每个任务上取首次运行，所有结果均在同一台机器上计分。Score@1 和 Aτ 用百分比表示，GM 用倍数表示。每个智能体由模型和运行框架组成，推理强度均设为 high。结果错误或没有提速时，奖励记为零。{omitted} 的 v{version} 运行尚未完成，未列入表中。 | 首页 #leaderboard 的 caption；论文 §3–4，第 5–6 页；results.json 的 sources.leaderboard、selection.benchmark_version、models、tasks、metric_note、selection.not_listed |
+| stopped | 模型提供方的安全系统中止了 {model} 在 {stopped} 上的运行，这些运行按失败计，奖励为零。该智能体在其余 {remaining} 个任务上的得分为 {score}%。 | 首页 #leaderboard 的 † 脚注；论文 §4 表 1，第 6 页；results.json 的 models[].stopped_tasks、tasks、selection.score_on_other_tasks |
 | Molecular simulation & electronic structure | 分子模拟与电子结构 | messaging.md 中文 FAQ；results.json 的 areas |
 | Fluids, atmosphere & ocean | 流体、大气与海洋 | messaging.md 中文 FAQ；results.json 的 areas |
 | Transport, plasma & astronomy | 输运、等离子体与天文 | messaging.md 中文 FAQ；results.json 的 areas |
